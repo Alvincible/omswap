@@ -9,7 +9,7 @@ const Index = () => {
         <div className="flex-1 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300">
           <iframe
             src="https://9x.9mm.pro/"
-            className="w-full h-full border-0"
+            className="w-full h-full border-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             title="Left webpage"
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
           />
