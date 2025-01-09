@@ -4,7 +4,7 @@ const Index = () => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-screen bg-black-100">
+    <div className="min-h-screen bg-black-0">
       <div className={`w-full h-screen flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2 p-2`}>
         <div className="flex-1 bg-white border border-[#1A1F2C] rounded-lg shadow-sm overflow-hidden transition-all duration-300">
           <iframe
