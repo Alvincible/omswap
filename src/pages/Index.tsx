@@ -8,7 +8,7 @@ const Index = () => {
       <div className={`w-full h-screen flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2 p-2`}>
         <div className="flex-1 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300">
           <iframe
-            src="https://example.com"
+            src="https://9x.9mm.pro/"
             className="w-full h-full border-0"
             title="Left webpage"
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
@@ -16,7 +16,7 @@ const Index = () => {
         </div>
         <div className="flex-1 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300">
           <iframe
-            src="https://example.com"
+            src="https://app.piteas.io/"
             className="w-full h-full border-0"
             title="Right webpage"
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
