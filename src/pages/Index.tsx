@@ -1,11 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
+  const isMobile = useIsMobile();
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gray-50">
+      <div className={`w-full h-screen flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2 p-2`}>
+        <div className="flex-1 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300">
+          <iframe
+            src="https://example.com"
+            className="w-full h-full border-0"
+            title="Left webpage"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          />
+        </div>
+        <div className="flex-1 bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300">
+          <iframe
+            src="https://example.com"
+            className="w-full h-full border-0"
+            title="Right webpage"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          />
+        </div>
       </div>
     </div>
   );
