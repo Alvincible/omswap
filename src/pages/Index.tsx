@@ -11,11 +11,15 @@ const Index = () => {
   const [rightUrl, setRightUrl] = useState("https://9x.9mm.pro/");
   const [favorites, setFavorites] = useState<string[]>([]);
 
-  const addToFavorites = (url: string) => {
-    if (!favorites.includes(url)) {
+  const toggleFavorite = (url: string) => {
+    if (favorites.includes(url)) {
+      setFavorites(favorites.filter(fav => fav !== url));
+    } else {
       setFavorites([...favorites, url]);
     }
   };
+
+  const isFavorite = (url: string) => favorites.includes(url);
 
   const handleUrlChange = (url: string, side: 'left' | 'right') => {
     if (side === 'left') {
@@ -42,10 +46,10 @@ const Index = () => {
             <Button
               size="sm"
               variant="ghost"
-              onClick={() => addToFavorites(leftUrl)}
-              className="text-red-400 hover:text-red-300"
+              onClick={() => toggleFavorite(leftUrl)}
+              className={isFavorite(leftUrl) ? "text-red-500 hover:text-red-400" : "text-red-400 hover:text-red-300"}
             >
-              <Heart className="h-4 w-4" />
+              <Heart className={`h-4 w-4 ${isFavorite(leftUrl) ? 'fill-current' : ''}`} />
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -83,10 +87,10 @@ const Index = () => {
             <Button
               size="sm"
               variant="ghost"
-              onClick={() => addToFavorites(rightUrl)}
-              className="text-red-400 hover:text-red-300"
+              onClick={() => toggleFavorite(rightUrl)}
+              className={isFavorite(rightUrl) ? "text-red-500 hover:text-red-400" : "text-red-400 hover:text-red-300"}
             >
-              <Heart className="h-4 w-4" />
+              <Heart className={`h-4 w-4 ${isFavorite(rightUrl) ? 'fill-current' : ''}`} />
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
