@@ -9,17 +9,27 @@ const Index = () => {
   const isMobile = useIsMobile();
   const [leftUrl, setLeftUrl] = useState("https://app.piteas.io/");
   const [rightUrl, setRightUrl] = useState("https://9x.9mm.pro/");
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [leftFavorites, setLeftFavorites] = useState<string[]>([]);
+  const [rightFavorites, setRightFavorites] = useState<string[]>([]);
 
-  const toggleFavorite = (url: string) => {
-    if (favorites.includes(url)) {
-      setFavorites(favorites.filter(fav => fav !== url));
+  const toggleLeftFavorite = (url: string) => {
+    if (leftFavorites.includes(url)) {
+      setLeftFavorites(leftFavorites.filter(fav => fav !== url));
     } else {
-      setFavorites([...favorites, url]);
+      setLeftFavorites([...leftFavorites, url]);
     }
   };
 
-  const isFavorite = (url: string) => favorites.includes(url);
+  const toggleRightFavorite = (url: string) => {
+    if (rightFavorites.includes(url)) {
+      setRightFavorites(rightFavorites.filter(fav => fav !== url));
+    } else {
+      setRightFavorites([...rightFavorites, url]);
+    }
+  };
+
+  const isLeftFavorite = (url: string) => leftFavorites.includes(url);
+  const isRightFavorite = (url: string) => rightFavorites.includes(url);
 
   const handleUrlChange = (url: string, side: 'left' | 'right') => {
     if (side === 'left') {
@@ -46,10 +56,10 @@ const Index = () => {
             <Button
               size="sm"
               variant="ghost"
-              onClick={() => toggleFavorite(leftUrl)}
-              className={isFavorite(leftUrl) ? "text-red-500 hover:text-red-400" : "text-red-400 hover:text-red-300"}
+              onClick={() => toggleLeftFavorite(leftUrl)}
+              className={isLeftFavorite(leftUrl) ? "text-red-500 hover:text-red-400" : "text-red-400 hover:text-red-300"}
             >
-              <Heart className={`h-4 w-4 ${isFavorite(leftUrl) ? 'fill-current' : ''}`} />
+              <Heart className={`h-4 w-4 ${isLeftFavorite(leftUrl) ? 'fill-current' : ''}`} />
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -58,10 +68,10 @@ const Index = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-gray-800 border-gray-600">
-                {favorites.length === 0 ? (
+                {leftFavorites.length === 0 ? (
                   <DropdownMenuItem disabled className="text-gray-400">No favorites yet</DropdownMenuItem>
                 ) : (
-                  favorites.map((fav, index) => (
+                  leftFavorites.map((fav, index) => (
                     <DropdownMenuItem
                       key={index}
                       onClick={() => handleUrlChange(fav, 'left')}
@@ -87,10 +97,10 @@ const Index = () => {
             <Button
               size="sm"
               variant="ghost"
-              onClick={() => toggleFavorite(rightUrl)}
-              className={isFavorite(rightUrl) ? "text-red-500 hover:text-red-400" : "text-red-400 hover:text-red-300"}
+              onClick={() => toggleRightFavorite(rightUrl)}
+              className={isRightFavorite(rightUrl) ? "text-red-500 hover:text-red-400" : "text-red-400 hover:text-red-300"}
             >
-              <Heart className={`h-4 w-4 ${isFavorite(rightUrl) ? 'fill-current' : ''}`} />
+              <Heart className={`h-4 w-4 ${isRightFavorite(rightUrl) ? 'fill-current' : ''}`} />
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -99,10 +109,10 @@ const Index = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-gray-800 border-gray-600">
-                {favorites.length === 0 ? (
+                {rightFavorites.length === 0 ? (
                   <DropdownMenuItem disabled className="text-gray-400">No favorites yet</DropdownMenuItem>
                 ) : (
-                  favorites.map((fav, index) => (
+                  rightFavorites.map((fav, index) => (
                     <DropdownMenuItem
                       key={index}
                       onClick={() => handleUrlChange(fav, 'right')}
