@@ -1,0 +1,9 @@
+{
+  "websites": [
+    { "url": "https://9x.9mm.pro/", "name": "9mm 9x" },
+    { "url": "https://app.piteas.io/", "name": "Piteas" },
+    { "url": "https://pulseswap.io/", "name": "PulseSwap" },
+    { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" },
+    { "url": "https://pulsex.hexoacoin.com/#/", "name": "PulseX Hexo" }
+  ]
+}

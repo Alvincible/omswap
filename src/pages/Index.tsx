@@ -1,10 +1,31 @@
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Heart, Link } from "lucide-react";
+import { Heart, Link, ChevronDown } from "lucide-react";
 import chainsData from "@/data/Chains.json";
+
+// Import all chain website data
+import xchData from "@/data/XCH.json";
+import ethData from "@/data/ETH.json";
+import baseData from "@/data/BASE.json";
+import bscData from "@/data/BSC.json";
+import plsData from "@/data/PLS.json";
+import sData from "@/data/S.json";
+
+interface Website {
+  url: string;
+  name: string;
+}
+
+const chainWebsites: Record<string, Website[]> = {
+  XCH: xchData.websites,
+  ETH: ethData.websites,
+  BASE: baseData.websites,
+  BSC: bscData.websites,
+  PLS: plsData.websites,
+  S: sData.websites,
+};
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -12,7 +33,14 @@ const Index = () => {
   const [rightUrl, setRightUrl] = useState("https://9x.9mm.pro/");
   const [leftFavorites, setLeftFavorites] = useState<string[]>([]);
   const [rightFavorites, setRightFavorites] = useState<string[]>([]);
-  const [selectedChain, setSelectedChain] = useState<string | null>(null);
+  const [selectedChain, setSelectedChain] = useState<string>("PLS");
+  const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["PLS"]);
+
+  useEffect(() => {
+    if (selectedChain && chainWebsites[selectedChain]) {
+      setAvailableWebsites(chainWebsites[selectedChain]);
+    }
+  }, [selectedChain]);
 
   const toggleLeftFavorite = (url: string) => {
     if (leftFavorites.includes(url)) {
@@ -41,6 +69,11 @@ const Index = () => {
     }
   };
 
+  const getWebsiteName = (url: string) => {
+    const website = availableWebsites.find(w => w.url === url);
+    return website?.name || url;
+  };
+
   return (
     <div className="min-h-screen bg-black">
       {/* Toolbar */}
@@ -48,13 +81,25 @@ const Index = () => {
         <div className={`flex ${isMobile ? 'flex-col gap-2' : 'flex-row gap-4'} items-center justify-between`}>
           {/* Left Panel Controls */}
           <div className="flex-1 flex items-center gap-2">
-            <Input
-              value={leftUrl}
-              onChange={(e) => setLeftUrl(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleUrlChange(leftUrl, 'left')}
-              className="flex-1 bg-gray-700 border-gray-600 text-white"
-              placeholder="Enter URL for left panel"
-            />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" variant="outline" className="flex-1 bg-gray-700 border-gray-600 text-white hover:bg-gray-600 justify-between">
+                  <span className="truncate">{getWebsiteName(leftUrl)}</span>
+                  <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[200px]">
+                {availableWebsites.map((website, index) => (
+                  <DropdownMenuItem
+                    key={index}
+                    onClick={() => handleUrlChange(website.url, 'left')}
+                    className="text-white hover:bg-gray-700 cursor-pointer"
+                  >
+                    {website.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button
               size="sm"
               variant="ghost"
@@ -79,7 +124,7 @@ const Index = () => {
                       onClick={() => handleUrlChange(fav, 'left')}
                       className="text-white hover:bg-gray-700 cursor-pointer"
                     >
-                      {fav}
+                      {getWebsiteName(fav)}
                     </DropdownMenuItem>
                   ))
                 )}
@@ -112,13 +157,25 @@ const Index = () => {
           
           {/* Right Panel Controls */}
           <div className="flex-1 flex items-center gap-2">
-            <Input
-              value={rightUrl}
-              onChange={(e) => setRightUrl(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleUrlChange(rightUrl, 'right')}
-              className="flex-1 bg-gray-700 border-gray-600 text-white"
-              placeholder="Enter URL for right panel"
-            />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" variant="outline" className="flex-1 bg-gray-700 border-gray-600 text-white hover:bg-gray-600 justify-between">
+                  <span className="truncate">{getWebsiteName(rightUrl)}</span>
+                  <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[200px]">
+                {availableWebsites.map((website, index) => (
+                  <DropdownMenuItem
+                    key={index}
+                    onClick={() => handleUrlChange(website.url, 'right')}
+                    className="text-white hover:bg-gray-700 cursor-pointer"
+                  >
+                    {website.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button
               size="sm"
               variant="ghost"
@@ -143,7 +200,7 @@ const Index = () => {
                       onClick={() => handleUrlChange(fav, 'right')}
                       className="text-white hover:bg-gray-700 cursor-pointer"
                     >
-                      {fav}
+                      {getWebsiteName(fav)}
                     </DropdownMenuItem>
                   ))
                 )}
