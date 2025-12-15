@@ -1,0 +1,10 @@
+{
+  "websites": [
+    { "url": "https://kyberswap.com/swap", "name": "KyberSwap" },
+    { "url": "https://matcha.xyz/", "name": "Matcha" },
+    { "url": "https://swap.defillama.com/", "name": "DefiLlama" },
+    { "url": "https://swap.cow.fi/", "name": "CoW Swap" },
+    { "url": "https://app.uniswap.org/swap", "name": "Uniswap" },
+    { "url": "https://pancakeswap.finance/", "name": "PancakeSwap" }
+  ]
+}
