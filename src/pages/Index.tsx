@@ -36,11 +36,15 @@ const Index = () => {
   const [selectedChain, setSelectedChain] = useState<string>("PLS");
   const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["PLS"]);
 
-  useEffect(() => {
-    if (selectedChain && chainWebsites[selectedChain]) {
-      setAvailableWebsites(chainWebsites[selectedChain]);
+  const handleChainChange = (chain: string) => {
+    setSelectedChain(chain);
+    if (chainWebsites[chain] && chainWebsites[chain].length > 0) {
+      const firstWebsite = chainWebsites[chain][0].url;
+      setLeftUrl(firstWebsite);
+      setRightUrl(firstWebsite);
+      setAvailableWebsites(chainWebsites[chain]);
     }
-  }, [selectedChain]);
+  };
 
   const toggleLeftFavorite = (url: string) => {
     if (leftFavorites.includes(url)) {
@@ -145,7 +149,7 @@ const Index = () => {
                 {chainsData.chains.map((chain) => (
                   <DropdownMenuItem
                     key={chain.id}
-                    onClick={() => setSelectedChain(chain.name)}
+                    onClick={() => handleChainChange(chain.name)}
                     className="text-white hover:bg-gray-700 cursor-pointer"
                   >
                     {chain.name}
