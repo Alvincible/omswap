@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Heart } from "lucide-react";
+import { Heart, Link } from "lucide-react";
+import chainsData from "@/data/Chains.json";
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -11,6 +12,7 @@ const Index = () => {
   const [rightUrl, setRightUrl] = useState("https://9x.9mm.pro/");
   const [leftFavorites, setLeftFavorites] = useState<string[]>([]);
   const [rightFavorites, setRightFavorites] = useState<string[]>([]);
+  const [selectedChain, setSelectedChain] = useState<string | null>(null);
 
   const toggleLeftFavorite = (url: string) => {
     if (leftFavorites.includes(url)) {
@@ -43,7 +45,7 @@ const Index = () => {
     <div className="min-h-screen bg-black">
       {/* Toolbar */}
       <div className="w-full bg-gray-800 border-b border-orange-500 p-2">
-        <div className={`flex ${isMobile ? 'flex-col gap-2' : 'flex-row gap-4'} items-center`}>
+        <div className={`flex ${isMobile ? 'flex-col gap-2' : 'flex-row gap-4'} items-center justify-between`}>
           {/* Left Panel Controls */}
           <div className="flex-1 flex items-center gap-2">
             <Input
@@ -81,6 +83,29 @@ const Index = () => {
                     </DropdownMenuItem>
                   ))
                 )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Chain Selector - Center */}
+          <div className="flex items-center">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" variant="outline" className="bg-orange-600 border-orange-500 text-white hover:bg-orange-500">
+                  <Link className="h-4 w-4 mr-2" />
+                  {selectedChain || "Select Chain"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-gray-800 border-gray-600">
+                {chainsData.chains.map((chain) => (
+                  <DropdownMenuItem
+                    key={chain.id}
+                    onClick={() => setSelectedChain(chain.name)}
+                    className="text-white hover:bg-gray-700 cursor-pointer"
+                  >
+                    {chain.name}
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
