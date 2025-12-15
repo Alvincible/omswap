@@ -1,0 +1,10 @@
+{
+  "chains": [
+    { "id": "xch", "name": "XCH" },
+    { "id": "eth", "name": "ETH" },
+    { "id": "base", "name": "BASE" },
+    { "id": "bsc", "name": "BSC" },
+    { "id": "pls", "name": "PLS" },
+    { "id": "s", "name": "S" }
+  ]
+}
