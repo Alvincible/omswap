@@ -1,8 +1,8 @@
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Heart, Link, ChevronDown } from "lucide-react";
+import { Link, ChevronDown } from "lucide-react";
 import chainsData from "@/data/Chains.json";
 
 // Import all chain website data
@@ -31,8 +31,6 @@ const Index = () => {
   const isMobile = useIsMobile();
   const [leftUrl, setLeftUrl] = useState("https://app.piteas.io/");
   const [rightUrl, setRightUrl] = useState("https://9x.9mm.pro/");
-  const [leftFavorites, setLeftFavorites] = useState<string[]>([]);
-  const [rightFavorites, setRightFavorites] = useState<string[]>([]);
   const [selectedChain, setSelectedChain] = useState<string>("PLS");
   const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["PLS"]);
 
@@ -46,25 +44,6 @@ const Index = () => {
       setAvailableWebsites(chainWebsites[chain]);
     }
   };
-
-  const toggleLeftFavorite = (url: string) => {
-    if (leftFavorites.includes(url)) {
-      setLeftFavorites(leftFavorites.filter(fav => fav !== url));
-    } else {
-      setLeftFavorites([...leftFavorites, url]);
-    }
-  };
-
-  const toggleRightFavorite = (url: string) => {
-    if (rightFavorites.includes(url)) {
-      setRightFavorites(rightFavorites.filter(fav => fav !== url));
-    } else {
-      setRightFavorites([...rightFavorites, url]);
-    }
-  };
-
-  const isLeftFavorite = (url: string) => leftFavorites.includes(url);
-  const isRightFavorite = (url: string) => rightFavorites.includes(url);
 
   const handleUrlChange = (url: string, side: 'left' | 'right') => {
     if (side === 'left') {
@@ -105,43 +84,13 @@ const Index = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => toggleLeftFavorite(leftUrl)}
-              className={isLeftFavorite(leftUrl) ? "text-red-500 hover:text-red-400" : "text-red-400 hover:text-red-300"}
-            >
-              <Heart className={`h-4 w-4 ${isLeftFavorite(leftUrl) ? 'fill-current' : ''}`} />
-            </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className="bg-gray-700 border-gray-600 text-white hover:bg-gray-600">
-                  Favorites
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600">
-                {leftFavorites.length === 0 ? (
-                  <DropdownMenuItem disabled className="text-gray-400">No favorites yet</DropdownMenuItem>
-                ) : (
-                  leftFavorites.map((fav, index) => (
-                    <DropdownMenuItem
-                      key={index}
-                      onClick={() => handleUrlChange(fav, 'left')}
-                      className="text-white hover:bg-gray-700 cursor-pointer"
-                    >
-                      {getWebsiteName(fav)}
-                    </DropdownMenuItem>
-                  ))
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
 
           {/* Chain Selector - Center */}
           <div className="flex items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className="bg-orange-600 border-orange-500 text-white hover:bg-orange-500">
+                <Button size="sm" variant="outline" className="min-w-[200px] bg-orange-600 border-orange-500 text-white hover:bg-orange-500">
                   <Link className="h-4 w-4 mr-2" />
                   {selectedChain || "Select Chain"}
                 </Button>
@@ -179,36 +128,6 @@ const Index = () => {
                     {website.name}
                   </DropdownMenuItem>
                 ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => toggleRightFavorite(rightUrl)}
-              className={isRightFavorite(rightUrl) ? "text-red-500 hover:text-red-400" : "text-red-400 hover:text-red-300"}
-            >
-              <Heart className={`h-4 w-4 ${isRightFavorite(rightUrl) ? 'fill-current' : ''}`} />
-            </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className="bg-gray-700 border-gray-600 text-white hover:bg-gray-600">
-                  Favorites
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600">
-                {rightFavorites.length === 0 ? (
-                  <DropdownMenuItem disabled className="text-gray-400">No favorites yet</DropdownMenuItem>
-                ) : (
-                  rightFavorites.map((fav, index) => (
-                    <DropdownMenuItem
-                      key={index}
-                      onClick={() => handleUrlChange(fav, 'right')}
-                      className="text-white hover:bg-gray-700 cursor-pointer"
-                    >
-                      {getWebsiteName(fav)}
-                    </DropdownMenuItem>
-                  ))
-                )}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
