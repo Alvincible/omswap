@@ -30,8 +30,8 @@ const chainWebsites: Record<string, Website[]> = {
 
 const Index = () => {
   const isMobile = useIsMobile();
-  const [leftUrl, setLeftUrl] = useState("https://app.piteas.io/");
-  const [rightUrl, setRightUrl] = useState("https://9x.9mm.pro/");
+  const [leftUrl, setLeftUrl] = useState("https://9x.9mm.pro/");
+  const [rightUrl, setRightUrl] = useState("https://app.piteas.io/");
   const [selectedChain, setSelectedChain] = useState<string>("PLS");
   const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["PLS"]);
 
