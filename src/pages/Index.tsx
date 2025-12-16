@@ -40,8 +40,9 @@ const Index = () => {
     setSelectedChain(chain);
     if (chainWebsites[chain] && chainWebsites[chain].length > 0) {
       const firstWebsite = chainWebsites[chain][0].url;
+      const secondWebsite = chainWebsites[chain].length > 1 ? chainWebsites[chain][1].url : firstWebsite;
       setLeftUrl(firstWebsite);
-      setRightUrl(firstWebsite);
+      setRightUrl(secondWebsite);
       setAvailableWebsites(chainWebsites[chain]);
     }
   };
