@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Link, ChevronDown } from "lucide-react";
+import KyberSwapWidget from "@/components/KyberSwapWidget";
 import chainsData from "@/data/Chains.json";
 
 // Import all chain website data
@@ -57,6 +58,8 @@ const Index = () => {
     const website = availableWebsites.find(w => w.url === url);
     return website?.name || url;
   };
+
+  const isKyberSwapUrl = (url: string) => url.includes("kyberswap.com");
 
   return (
     <div className="min-h-screen bg-black">
@@ -136,21 +139,29 @@ const Index = () => {
 
       {/* Main Content */}
       <div className={`w-full h-[calc(100vh-80px)] flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2 p-2`}>
-        <div className="flex-1 bg-white border border-orange-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
-          <iframe
-            src={leftUrl}
-            className="w-full h-full border-0"
-            title="Left webpage"
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-          />
+        <div className="flex-1 bg-gray-900 border border-orange-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
+          {isKyberSwapUrl(leftUrl) ? (
+            <KyberSwapWidget className="w-full h-full flex items-center justify-center" />
+          ) : (
+            <iframe
+              src={leftUrl}
+              className="w-full h-full border-0"
+              title="Left webpage"
+              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+            />
+          )}
         </div>
-        <div className="flex-1 bg-white border border-orange-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
-          <iframe
-            src={rightUrl}
-            className="w-full h-full border-0"
-            title="Right webpage"
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-          />
+        <div className="flex-1 bg-gray-900 border border-orange-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
+          {isKyberSwapUrl(rightUrl) ? (
+            <KyberSwapWidget className="w-full h-full flex items-center justify-center" />
+          ) : (
+            <iframe
+              src={rightUrl}
+              className="w-full h-full border-0"
+              title="Right webpage"
+              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+            />
+          )}
         </div>
       </div>
     </div>
