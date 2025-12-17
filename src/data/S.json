@@ -1,8 +1,8 @@
 {
   "websites": [
-    { "url": "https://9x.9mm.pro/", "name": "9mm 9x" },
-    { "url": "https://kyberswap.com/swap", "name": "KyberSwap" },
-    { "url": "https://matcha.xyz/", "name": "Matcha" },
-    { "url": "https://www.shadow.so/trade", "name": "Shadow" }
+    { "url": "https://swap.defillama.com/", "name": "DefiLlama" },
+    { "url": "https://9x.9mm.pro/", "name": "9X" },
+    { "url": "https://www.shadow.so/trade", "name": "Shadow" },
+    { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" }
   ]
 }

@@ -1,9 +1,11 @@
 {
   "websites": [
-    { "url": "https://kyberswap.com/swap", "name": "KyberSwap" },
     { "url": "https://swap.defillama.com/", "name": "DefiLlama" },
     { "url": "https://swap.cow.fi/", "name": "CoW Swap" },
+    { "url": "https://matcha.xyz/", "name": "Matcha" },
+    { "url": "https://kyberswap.com/swap", "name": "KyberSwap" },
     { "url": "https://app.uniswap.org/swap", "name": "Uniswap" },
-    { "url": "https://pancakeswap.finance/", "name": "PancakeSwap" }
+    { "url": "https://pancakeswap.finance/", "name": "PancakeSwap" },
+    { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" }
   ]
 }
