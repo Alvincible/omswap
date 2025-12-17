@@ -2,8 +2,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Link, ChevronDown } from "lucide-react";
-import KyberSwapWidget from "@/components/KyberSwapWidget";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import chainsData from "@/data/Chains.json";
 
 // Import all chain website data
@@ -26,6 +25,13 @@ const chainWebsites: Record<string, Website[]> = {
   BSC: bscData.websites,
   PLS: plsData.websites,
   S: sData.websites,
+};
+
+// Sites that block iframe embedding
+const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz"];
+
+const isEmbeddable = (url: string) => {
+  return !nonEmbeddableSites.some(site => url.includes(site));
 };
 
 const Index = () => {
@@ -59,7 +65,17 @@ const Index = () => {
     return website?.name || url;
   };
 
-  const isKyberSwapUrl = (url: string) => url.includes("kyberswap.com");
+  const OpenInNewTabButton = ({ url }: { url: string }) => (
+    <div className="w-full h-full flex items-center justify-center bg-gray-900">
+      <Button
+        onClick={() => window.open(url, '_blank')}
+        className="bg-orange-600 hover:bg-orange-500 text-white px-6 py-4 text-lg flex items-center gap-3"
+      >
+        <ExternalLink className="h-5 w-5" />
+        Open {url} in new tab
+      </Button>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-black">
@@ -94,7 +110,6 @@ const Index = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button size="sm" variant="outline" className="min-w-[200px] bg-orange-600 border-orange-500 text-white hover:bg-orange-500">
-                  <Link className="h-4 w-4 mr-2" />
                   {selectedChain || "Select Chain"}
                 </Button>
               </DropdownMenuTrigger>
@@ -140,27 +155,27 @@ const Index = () => {
       {/* Main Content */}
       <div className={`w-full h-[calc(100vh-80px)] flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2 p-2`}>
         <div className="flex-1 bg-gray-900 border border-orange-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
-          {isKyberSwapUrl(leftUrl) ? (
-            <KyberSwapWidget className="w-full h-full flex items-center justify-center" />
-          ) : (
+          {isEmbeddable(leftUrl) ? (
             <iframe
               src={leftUrl}
               className="w-full h-full border-0"
               title="Left webpage"
               sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
             />
+          ) : (
+            <OpenInNewTabButton url={leftUrl} />
           )}
         </div>
         <div className="flex-1 bg-gray-900 border border-orange-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
-          {isKyberSwapUrl(rightUrl) ? (
-            <KyberSwapWidget className="w-full h-full flex items-center justify-center" />
-          ) : (
+          {isEmbeddable(rightUrl) ? (
             <iframe
               src={rightUrl}
               className="w-full h-full border-0"
               title="Right webpage"
               sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
             />
+          ) : (
+            <OpenInNewTabButton url={rightUrl} />
           )}
         </div>
       </div>
