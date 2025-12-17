@@ -78,14 +78,13 @@ const Index = () => {
         <ExternalLink className="h-5 w-5" />
         Open {url} in new tab
       </Button>
-      <a
-        href={url}
-        target="_split"
-        className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 text-lg rounded-md transition-colors"
+      <Button
+        onClick={() => window.open(url, '_split')}
+        className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 text-lg flex items-center gap-3"
       >
         <SplitSquareHorizontal className="h-5 w-5" />
         Open {url} in split tab
-      </a>
+      </Button>
     </div>
   );
 
