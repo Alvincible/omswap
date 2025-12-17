@@ -2,7 +2,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ChevronDown, ExternalLink } from "lucide-react";
+import { ChevronDown, ExternalLink, SplitSquareHorizontal } from "lucide-react";
 import chainsData from "@/data/Chains.json";
 
 // Import all chain website data
@@ -70,7 +70,7 @@ const Index = () => {
   };
 
   const OpenInNewTabButton = ({ url }: { url: string }) => (
-    <div className="w-full h-full flex items-center justify-center bg-gray-900">
+    <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900">
       <Button
         onClick={() => window.open(url, '_blank')}
         className="bg-orange-600 hover:bg-orange-500 text-white px-6 py-4 text-lg flex items-center gap-3"
@@ -78,6 +78,14 @@ const Index = () => {
         <ExternalLink className="h-5 w-5" />
         Open {url} in new tab
       </Button>
+      <a
+        href={url}
+        target="_split"
+        className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 text-lg rounded-md transition-colors"
+      >
+        <SplitSquareHorizontal className="h-5 w-5" />
+        Open {url} in split tab
+      </a>
     </div>
   );
 
