@@ -28,7 +28,7 @@ const chainWebsites: Record<string, Website[]> = {
 };
 
 // Sites that block iframe embedding
-const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz"];
+const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz", "9mm.pro"];
 
 const isEmbeddable = (url: string) => {
   return !nonEmbeddableSites.some(site => url.includes(site));
