@@ -85,15 +85,15 @@ const Index = () => {
   const OpenInNewTabButton = ({ url, name }: { url: string; name: string }) => (
     <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900">
       <div
-        className="bg-gray-400 text-white px-6 py-4 text-lg flex items-center gap-3 cursor-not-allowed select-none rounded"
+        className="bg-gray-400 text-white px-3 py-2 text-sm flex items-center gap-2 cursor-not-allowed select-none rounded"
       >
         {name} does not support iFrame
       </div>
       <Button
         onClick={() => window.open(url, '_blank')}
-        className="bg-green-600 hover:bg-green-500 text-black px-6 py-4 text-lg flex items-center gap-3"
+        className="bg-green-600 hover:bg-green-500 text-black px-8 py-6 text-xl flex items-center gap-3"
       >
-        <ExternalLink className="h-5 w-5" />
+        <ExternalLink className="h-6 w-6" />
         Open {name} in new tab
       </Button>
     </div>
