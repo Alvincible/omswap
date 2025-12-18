@@ -13,6 +13,23 @@ import bscData from "@/data/BSC.json";
 import plsData from "@/data/PLS.json";
 import sData from "@/data/S.json";
 
+// Import chain logos
+import xchLogo from "@/assets/chains/xch.png";
+import ethLogo from "@/assets/chains/eth.png";
+import baseLogo from "@/assets/chains/base.png";
+import bscLogo from "@/assets/chains/bsc.png";
+import plsLogo from "@/assets/chains/pls.png";
+import sLogo from "@/assets/chains/s.png";
+
+const chainLogos: Record<string, string> = {
+  XCH: xchLogo,
+  ETH: ethLogo,
+  BASE: baseLogo,
+  BSC: bscLogo,
+  PLS: plsLogo,
+  S: sLogo,
+};
+
 interface Website {
   url: string;
   name: string;
@@ -116,6 +133,9 @@ const Index = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button size="sm" variant="outline" className="min-w-[200px] bg-orange-600 border-orange-500 text-white hover:bg-orange-500">
+                  {selectedChain && chainLogos[selectedChain] && (
+                    <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-5 w-5 mr-2" />
+                  )}
                   {selectedChain || "Select Chain"}
                 </Button>
               </DropdownMenuTrigger>
@@ -126,6 +146,9 @@ const Index = () => {
                     onClick={() => handleChainChange(chain.name)}
                     className="text-white hover:bg-gray-700 cursor-pointer"
                   >
+                    {chainLogos[chain.name] && (
+                      <img src={chainLogos[chain.name]} alt={chain.name} className="h-4 w-4 mr-2" />
+                    )}
                     {chain.name}
                   </DropdownMenuItem>
                 ))}
