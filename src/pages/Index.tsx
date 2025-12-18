@@ -28,22 +28,18 @@ const chainWebsites: Record<string, Website[]> = {
 };
 
 // Sites that block iframe embedding
-const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz"];
+const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz", "dex.9mm.pro"];
 
 const isEmbeddable = (url: string) => {
-  // 9mm.pro sites are not embeddable, except 9x.9mm.pro
-  if (url.includes("9mm.pro") && !url.includes("9x.9mm.pro")) {
-    return false;
-  }
   return !nonEmbeddableSites.some(site => url.includes(site));
 };
 
 const Index = () => {
   const isMobile = useIsMobile();
-  const [leftUrl, setLeftUrl] = useState("https://9x.9mm.pro/");
-  const [rightUrl, setRightUrl] = useState("https://app.piteas.io/");
-  const [selectedChain, setSelectedChain] = useState<string>("PLS");
-  const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["PLS"]);
+  const [leftUrl, setLeftUrl] = useState("https://dexie.space/swap");
+  const [rightUrl, setRightUrl] = useState("https://v2.tibetswap.io/");
+  const [selectedChain, setSelectedChain] = useState<string>("XCH");
+  const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["XCH"]);
 
   const handleChainChange = (chain: string) => {
     setSelectedChain(chain);
@@ -71,6 +67,11 @@ const Index = () => {
 
   const OpenInNewTabButton = ({ url }: { url: string }) => (
     <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900">
+      <div
+        className="bg-gray-400 text-white px-6 py-4 text-lg flex items-center gap-3 cursor-not-allowed select-none rounded" // optional: add rounded if your button had it
+      >
+        Site does not support iFrame/Embedding
+      </div>
       <Button
         onClick={() => window.open(url, '_blank')}
         className="bg-orange-600 hover:bg-orange-500 text-white px-6 py-4 text-lg flex items-center gap-3"
@@ -78,13 +79,7 @@ const Index = () => {
         <ExternalLink className="h-5 w-5" />
         Open {url} in new tab
       </Button>
-      <Button
-        onClick={() => window.open(url, '_split')}
-        className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 text-lg flex items-center gap-3"
-      >
-        <SplitSquareHorizontal className="h-5 w-5" />
-        Open {url} in split tab
-      </Button>
+
     </div>
   );
 
@@ -137,7 +132,7 @@ const Index = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-          
+
           {/* Right Panel Controls */}
           <div className="flex-1 flex items-center gap-2">
             <DropdownMenu>
