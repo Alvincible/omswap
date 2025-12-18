@@ -87,7 +87,7 @@ const Index = () => {
       <div
         className="bg-gray-400 text-white px-6 py-4 text-lg flex items-center gap-3 cursor-not-allowed select-none rounded"
       >
-        Site does not support iFrame/Embedding
+        {name} does not support iFrame
       </div>
       <Button
         onClick={() => window.open(url, '_blank')}
