@@ -82,10 +82,10 @@ const Index = () => {
     return website?.name || url;
   };
 
-  const OpenInNewTabButton = ({ url }: { url: string }) => (
+  const OpenInNewTabButton = ({ url, name }: { url: string; name: string }) => (
     <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900">
       <div
-        className="bg-gray-400 text-white px-6 py-4 text-lg flex items-center gap-3 cursor-not-allowed select-none rounded" // optional: add rounded if your button had it
+        className="bg-gray-400 text-white px-6 py-4 text-lg flex items-center gap-3 cursor-not-allowed select-none rounded"
       >
         Site does not support iFrame/Embedding
       </div>
@@ -94,9 +94,8 @@ const Index = () => {
         className="bg-green-600 hover:bg-green-500 text-black px-6 py-4 text-lg flex items-center gap-3"
       >
         <ExternalLink className="h-5 w-5" />
-        Open {url} in new tab
+        Open {name} in new tab
       </Button>
-
     </div>
   );
 
@@ -192,7 +191,7 @@ const Index = () => {
               sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
             />
           ) : (
-            <OpenInNewTabButton url={leftUrl} />
+            <OpenInNewTabButton url={leftUrl} name={getWebsiteName(leftUrl)} />
           )}
         </div>
         <div className="flex-1 bg-gray-900 border border-green-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
@@ -204,7 +203,7 @@ const Index = () => {
               sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
             />
           ) : (
-            <OpenInNewTabButton url={rightUrl} />
+            <OpenInNewTabButton url={rightUrl} name={getWebsiteName(rightUrl)} />
           )}
         </div>
       </div>
