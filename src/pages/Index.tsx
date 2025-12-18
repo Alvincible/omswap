@@ -91,7 +91,7 @@ const Index = () => {
       </div>
       <Button
         onClick={() => window.open(url, '_blank')}
-        className="bg-orange-600 hover:bg-orange-500 text-white px-6 py-4 text-lg flex items-center gap-3"
+        className="bg-green-600 hover:bg-green-500 text-black px-6 py-4 text-lg flex items-center gap-3"
       >
         <ExternalLink className="h-5 w-5" />
         Open {url} in new tab
@@ -103,7 +103,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black">
       {/* Toolbar */}
-      <div className="w-full bg-gray-800 border-b border-orange-500 p-2">
+      <div className="w-full bg-gray-900 border-b border-green-500 p-2">
         <div className={`flex ${isMobile ? 'flex-col gap-2' : 'flex-row gap-4'} items-center justify-between`}>
           {/* Left Panel Controls */}
           <div className="flex-1 flex items-center gap-2">
@@ -132,7 +132,7 @@ const Index = () => {
           <div className="flex items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className="min-w-[200px] bg-orange-600 border-orange-500 text-white hover:bg-orange-500">
+                <Button size="sm" variant="outline" className="min-w-[200px] bg-green-600 border-green-500 text-black hover:bg-green-500">
                   {selectedChain && chainLogos[selectedChain] && (
                     <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-5 w-5 mr-2" />
                   )}
@@ -183,7 +183,7 @@ const Index = () => {
 
       {/* Main Content */}
       <div className={`w-full h-[calc(100vh-80px)] flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2 p-2`}>
-        <div className="flex-1 bg-gray-900 border border-orange-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
+        <div className="flex-1 bg-gray-900 border border-green-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
           {isEmbeddable(leftUrl) ? (
             <iframe
               src={leftUrl}
@@ -195,7 +195,7 @@ const Index = () => {
             <OpenInNewTabButton url={leftUrl} />
           )}
         </div>
-        <div className="flex-1 bg-gray-900 border border-orange-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
+        <div className="flex-1 bg-gray-900 border border-green-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
           {isEmbeddable(rightUrl) ? (
             <iframe
               src={rightUrl}
