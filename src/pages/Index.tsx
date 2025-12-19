@@ -109,7 +109,7 @@ const Index = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
               <Button size="sm" variant="outline" className="flex-1 bg-gray-700 border-gray-600 text-white hover:bg-gray-600 justify-between">
-                  <span className="truncate">{getWebsiteName(leftUrl)}   ({leftUrl})</span>
+                  <span className="truncate">{getWebsiteName(leftUrl)}   (<span className="text-blue-400">{leftUrl}</span>)</span>
                   <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
                 </Button>
               </DropdownMenuTrigger>
@@ -160,7 +160,7 @@ const Index = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
               <Button size="sm" variant="outline" className="flex-1 bg-gray-700 border-gray-600 text-white hover:bg-gray-600 justify-between">
-                  <span className="truncate">{getWebsiteName(rightUrl)}   ({rightUrl})</span>
+                  <span className="truncate">{getWebsiteName(rightUrl)}   (<span className="text-blue-400">{rightUrl}</span>)</span>
                   <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
                 </Button>
               </DropdownMenuTrigger>
