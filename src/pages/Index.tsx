@@ -113,15 +113,22 @@ const Index = () => {
                   <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[200px]">
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[300px] p-1">
                 {availableWebsites.map((website, index) => (
-                  <DropdownMenuItem
-                    key={index}
-                    onClick={() => handleUrlChange(website.url, 'left')}
-                    className="text-white hover:bg-gray-700 cursor-pointer"
-                  >
-                    {website.name}
-                  </DropdownMenuItem>
+                  <div key={index} className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleUrlChange(website.url, 'left')}
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm"
+                    >
+                      {website.name}
+                    </button>
+                    <button
+                      onClick={() => window.open(website.url, '_blank')}
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </button>
+                  </div>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
@@ -164,15 +171,22 @@ const Index = () => {
                   <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[200px]">
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[300px] p-1">
                 {availableWebsites.map((website, index) => (
-                  <DropdownMenuItem
-                    key={index}
-                    onClick={() => handleUrlChange(website.url, 'right')}
-                    className="text-white hover:bg-gray-700 cursor-pointer"
-                  >
-                    {website.name}
-                  </DropdownMenuItem>
+                  <div key={index} className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleUrlChange(website.url, 'right')}
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm"
+                    >
+                      {website.name}
+                    </button>
+                    <button
+                      onClick={() => window.open(website.url, '_blank')}
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </button>
+                  </div>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
