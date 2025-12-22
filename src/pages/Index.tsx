@@ -163,7 +163,7 @@ const Index = () => {
           <div className="flex items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className={`min-w-[200px] ${colors.bg} ${colors.border} ${colors.text} ${colors.hover} text-lg py-5`}>
+                <Button size="sm" variant="outline" className={`min-w-[200px] ${colors.bg} ${colors.border} ${colors.text} ${colors.hover} text-lg py-1`}>
                   {selectedChain && chainLogos[selectedChain] && (
                     <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-6 w-6 mr-2" />
                   )}
