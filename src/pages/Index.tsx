@@ -170,12 +170,12 @@ const Index = () => {
                   {selectedChain || "Select Chain"}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white border-gray-300">
+              <DropdownMenuContent className="bg-gray-800 border-gray-600">
                 {chainsData.chains.map((chain) => (
                   <DropdownMenuItem
                     key={chain.id}
                     onClick={() => handleChainChange(chain.name)}
-                    className={`text-black cursor-pointer ${colors.hover} hover:text-white`}
+                    className="text-white hover:bg-gray-700 cursor-pointer"
                   >
                     {chainLogos[chain.name] && (
                       <img src={chainLogos[chain.name]} alt={chain.name} className="h-4 w-4 mr-2" />
