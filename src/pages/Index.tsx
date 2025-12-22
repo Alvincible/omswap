@@ -53,10 +53,10 @@ const chainWebsites: Record<string, Website[]> = {
 // Color classes for each chain theme
 const chainColorClasses: Record<string, { border: string; bg: string; hover: string; text: string }> = {
   green: { border: "border-green-500", bg: "bg-green-600", hover: "hover:bg-green-500", text: "text-black" },
-  slate: { border: "border-slate-400", bg: "bg-slate-500", hover: "hover:bg-slate-400", text: "text-white" },
-  blue: { border: "border-blue-500", bg: "bg-blue-600", hover: "hover:bg-blue-500", text: "text-white" },
+  slate: { border: "border-slate-400", bg: "bg-slate-500", hover: "hover:bg-slate-400", text: "text-black" },
+  blue: { border: "border-blue-500", bg: "bg-blue-600", hover: "hover:bg-blue-500", text: "text-black" },
   yellow: { border: "border-yellow-500", bg: "bg-yellow-500", hover: "hover:bg-yellow-400", text: "text-black" },
-  purple: { border: "border-purple-500", bg: "bg-purple-600", hover: "hover:bg-purple-500", text: "text-white" },
+  purple: { border: "border-purple-500", bg: "bg-purple-600", hover: "hover:bg-purple-500", text: "text-black" },
   orange: { border: "border-orange-500", bg: "bg-orange-500", hover: "hover:bg-orange-400", text: "text-black" },
 };
 
@@ -133,7 +133,7 @@ const Index = () => {
           <div className="flex-1 flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-              <Button size="sm" variant="outline" className={`flex-1 bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between`}>
+                <Button size="sm" variant="outline" className={`flex-1 bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between`}>
                   <span className="truncate">{getWebsiteName(leftUrl)}   (<span className="text-blue-400">{leftUrl}</span>)</span>
                   <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
                 </Button>
@@ -191,7 +191,7 @@ const Index = () => {
           <div className="flex-1 flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-              <Button size="sm" variant="outline" className={`flex-1 bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between`}>
+                <Button size="sm" variant="outline" className={`flex-1 bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between`}>
                   <span className="truncate">{getWebsiteName(rightUrl)}   (<span className="text-blue-400">{rightUrl}</span>)</span>
                   <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
                 </Button>
