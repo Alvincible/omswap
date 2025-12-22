@@ -1,10 +1,10 @@
 {
   "chains": [
-    { "id": "xch", "name": "XCH" },
-    { "id": "eth", "name": "ETH" },
-    { "id": "base", "name": "BASE" },
-    { "id": "bsc", "name": "BSC" },
-    { "id": "pls", "name": "PLS" },
-    { "id": "s", "name": "S" }
+    { "id": "xch", "name": "XCH", "color": "green" },
+    { "id": "eth", "name": "ETH", "color": "slate" },
+    { "id": "base", "name": "BASE", "color": "blue" },
+    { "id": "bsc", "name": "BSC", "color": "yellow" },
+    { "id": "pls", "name": "PLS", "color": "purple" },
+    { "id": "s", "name": "S", "color": "orange" }
   ]
 }

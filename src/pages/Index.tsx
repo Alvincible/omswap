@@ -35,6 +35,12 @@ interface Website {
   name: string;
 }
 
+interface Chain {
+  id: string;
+  name: string;
+  color: string;
+}
+
 const chainWebsites: Record<string, Website[]> = {
   XCH: xchData.websites,
   ETH: ethData.websites,
@@ -42,6 +48,16 @@ const chainWebsites: Record<string, Website[]> = {
   BSC: bscData.websites,
   PLS: plsData.websites,
   S: sData.websites,
+};
+
+// Color classes for each chain theme
+const chainColorClasses: Record<string, { border: string; bg: string; hover: string; text: string }> = {
+  green: { border: "border-green-500", bg: "bg-green-600", hover: "hover:bg-green-500", text: "text-black" },
+  slate: { border: "border-slate-400", bg: "bg-slate-500", hover: "hover:bg-slate-400", text: "text-black" },
+  blue: { border: "border-blue-500", bg: "bg-blue-600", hover: "hover:bg-blue-500", text: "text-black" },
+  yellow: { border: "border-yellow-500", bg: "bg-yellow-500", hover: "hover:bg-yellow-400", text: "text-black" },
+  purple: { border: "border-purple-500", bg: "bg-purple-600", hover: "hover:bg-purple-500", text: "text-black" },
+  orange: { border: "border-orange-500", bg: "bg-orange-500", hover: "hover:bg-orange-400", text: "text-black" },
 };
 
 // Sites that block iframe embedding
@@ -56,10 +72,19 @@ const Index = () => {
   const [leftUrl, setLeftUrl] = useState("https://dexie.space/swap");
   const [rightUrl, setRightUrl] = useState("https://v2.tibetswap.io/");
   const [selectedChain, setSelectedChain] = useState<string>("XCH");
+  const [selectedColor, setSelectedColor] = useState<string>("green");
   const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["XCH"]);
+
+  // Get current color classes based on selected chain
+  const colors = chainColorClasses[selectedColor] || chainColorClasses.green;
 
   const handleChainChange = (chain: string) => {
     setSelectedChain(chain);
+    // Find the chain data to get the color
+    const chainData = (chainsData.chains as Chain[]).find(c => c.name === chain);
+    if (chainData) {
+      setSelectedColor(chainData.color);
+    }
     if (chainWebsites[chain] && chainWebsites[chain].length > 0) {
       const firstWebsite = chainWebsites[chain][0].url;
       const secondWebsite = chainWebsites[chain].length > 1 ? chainWebsites[chain][1].url : firstWebsite;
@@ -91,7 +116,7 @@ const Index = () => {
       </div>
       <Button
         onClick={() => window.open(url, '_blank')}
-        className="bg-green-600 hover:bg-green-500 text-black px-8 py-6 text-xl flex items-center gap-3"
+        className={`${colors.bg} ${colors.hover} ${colors.text} px-8 py-6 text-xl flex items-center gap-3`}
       >
         <ExternalLink className="h-6 w-6" />
         Open {name} in new tab
@@ -102,13 +127,13 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black">
       {/* Toolbar */}
-      <div className="w-full bg-gray-900 border-b border-green-500 p-2">
+      <div className={`w-full bg-gray-900 border-b ${colors.border} p-2`}>
         <div className={`flex ${isMobile ? 'flex-col gap-2' : 'flex-row gap-4'} items-center justify-between`}>
           {/* Left Panel Controls */}
           <div className="flex-1 flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-              <Button size="sm" variant="outline" className="flex-1 bg-gray-700 border-green-500 text-white hover:bg-gray-600 justify-between">
+                <Button size="sm" variant="outline" className={`flex-1 bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between`}>
                   <span className="truncate">{getWebsiteName(leftUrl)}   (<span className="text-blue-400">{leftUrl}</span>)</span>
                   <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
                 </Button>
@@ -138,9 +163,9 @@ const Index = () => {
           <div className="flex items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className="min-w-[200px] bg-green-600 border-green-500 text-black hover:bg-green-500">
+                <Button size="sm" variant="outline" className={`min-w-[200px] ${colors.bg} ${colors.border} ${colors.text} ${colors.hover} text-lg py-1`}>
                   {selectedChain && chainLogos[selectedChain] && (
-                    <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-5 w-5 mr-2" />
+                    <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-6 w-6 mr-2" />
                   )}
                   {selectedChain || "Select Chain"}
                 </Button>
@@ -166,7 +191,7 @@ const Index = () => {
           <div className="flex-1 flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-              <Button size="sm" variant="outline" className="flex-1 bg-gray-700 border-green-500 text-white hover:bg-gray-600 justify-between">
+                <Button size="sm" variant="outline" className={`flex-1 bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between`}>
                   <span className="truncate">{getWebsiteName(rightUrl)}   (<span className="text-blue-400">{rightUrl}</span>)</span>
                   <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
                 </Button>
@@ -196,7 +221,7 @@ const Index = () => {
 
       {/* Main Content */}
       <div className={`w-full h-[calc(100vh-80px)] flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2 p-2`}>
-        <div className="flex-1 bg-gray-900 border border-green-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
+        <div className={`flex-1 bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
           {isEmbeddable(leftUrl) ? (
             <iframe
               src={leftUrl}
@@ -208,7 +233,7 @@ const Index = () => {
             <OpenInNewTabButton url={leftUrl} name={getWebsiteName(leftUrl)} />
           )}
         </div>
-        <div className="flex-1 bg-gray-900 border border-green-500 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
+        <div className={`flex-1 bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
           {isEmbeddable(rightUrl) ? (
             <iframe
               src={rightUrl}
