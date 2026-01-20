@@ -10,7 +10,7 @@
   ],
   "bridges": [
     { "url": "https://www.bnbchain.org/en/bnb-chain-bridge", "name": "BNB Chain Bridge (official bridge)" },
-    { "url": "https://portalbridge.com/", "name": "Portal Bridge(Wormhole)" },
+    { "url": "https://portalbridge.com/", "name": "Portal Bridge (wormhole)" },
     { "url": "https://stargate.finance/", "name": "Stargate Finance" }
   ]
 }

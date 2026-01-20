@@ -10,7 +10,7 @@
     { "url": "https://app.uniswap.org/swap", "name": "Uniswap" }
   ],
   "bridges": [
-    { "url": "https://portalbridge.com/", "name": "Portal Bridge(Wormhole)" },
+    { "url": "https://portalbridge.com/", "name": "Portal Bridge (wormhole)" },
     { "url": "https://stargate.finance/", "name": "Stargate Finance" },
     { "url": "https://app.rhino.fi/bridge", "name": "Rhino" }
   ]
