@@ -7,5 +7,6 @@
     { "url": "https://app.uniswap.org/swap", "name": "Uniswap" },
     { "url": "https://pancakeswap.finance/", "name": "PancakeSwap" },
     { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" }
-  ]
+  ],
+  "bridges": []
 }
