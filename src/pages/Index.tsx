@@ -50,6 +50,15 @@ const chainWebsites: Record<string, Website[]> = {
   S: sData.websites,
 };
 
+const chainBridges: Record<string, Website[]> = {
+  XCH: xchData.bridges || [],
+  ETH: ethData.bridges || [],
+  BASE: baseData.bridges || [],
+  BSC: bscData.bridges || [],
+  PLS: plsData.bridges || [],
+  S: sData.bridges || [],
+};
+
 // Color classes for each chain theme
 const chainColorClasses: Record<string, { border: string; bg: string; hover: string; text: string }> = {
   green: { border: "border-green-500", bg: "bg-green-600", hover: "hover:bg-green-500", text: "text-black" },
@@ -74,6 +83,7 @@ const Index = () => {
   const [selectedChain, setSelectedChain] = useState<string>("XCH");
   const [selectedColor, setSelectedColor] = useState<string>("green");
   const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["XCH"]);
+  const [availableBridges, setAvailableBridges] = useState<Website[]>(chainBridges["XCH"]);
 
   // Get current color classes based on selected chain
   const colors = chainColorClasses[selectedColor] || chainColorClasses.green;
@@ -91,6 +101,7 @@ const Index = () => {
       setLeftUrl(firstWebsite);
       setRightUrl(secondWebsite);
       setAvailableWebsites(chainWebsites[chain]);
+      setAvailableBridges(chainBridges[chain] || []);
     }
   };
 
@@ -139,6 +150,7 @@ const Index = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[300px] p-1">
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">DEXes</div>
                 {availableWebsites.map((website, index) => (
                   <div key={index} className="flex items-center gap-1">
                     <button
@@ -149,6 +161,24 @@ const Index = () => {
                     </button>
                     <button
                       onClick={() => window.open(website.url, '_blank')}
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+                <div className="my-1 border-t border-gray-600" />
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Bridges</div>
+                {availableBridges.map((bridge, index) => (
+                  <div key={`bridge-${index}`} className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleUrlChange(bridge.url, 'left')}
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm"
+                    >
+                      {bridge.name}
+                    </button>
+                    <button
+                      onClick={() => window.open(bridge.url, '_blank')}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
                     >
                       <ExternalLink className="h-4 w-4" />
@@ -197,6 +227,7 @@ const Index = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[300px] p-1">
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">DEXes</div>
                 {availableWebsites.map((website, index) => (
                   <div key={index} className="flex items-center gap-1">
                     <button
@@ -207,6 +238,24 @@ const Index = () => {
                     </button>
                     <button
                       onClick={() => window.open(website.url, '_blank')}
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+                <div className="my-1 border-t border-gray-600" />
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Bridges</div>
+                {availableBridges.map((bridge, index) => (
+                  <div key={`bridge-${index}`} className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleUrlChange(bridge.url, 'right')}
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm"
+                    >
+                      {bridge.name}
+                    </button>
+                    <button
+                      onClick={() => window.open(bridge.url, '_blank')}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
                     >
                       <ExternalLink className="h-4 w-4" />

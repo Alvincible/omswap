@@ -7,5 +7,10 @@
     { "url": "https://app.uniswap.org/swap", "name": "Uniswap" },
     { "url": "https://pancakeswap.finance/", "name": "PancakeSwap" },
     { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" }
+  ],
+  "bridges": [
+    { "url": "https://www.bnbchain.org/en/bnb-chain-bridge", "name": "BNB Chain Bridge (official bridge)" },
+    { "url": "https://portalbridge.com/", "name": "Portal Bridge(Wormhole)" },
+    { "url": "https://stargate.finance/", "name": "Stargate Finance" }
   ]
 }
