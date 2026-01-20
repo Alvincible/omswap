@@ -4,7 +4,9 @@
     { "url": "https://9x.9mm.pro/", "name": "9X" },
     { "url": "https://pulseswap.io/", "name": "PulseSwap" },
     { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" },
-    { "url": "https://pulsex.hexoacoin.com/#/", "name": "PulseX" }
+    { "url": "https://pulsex.hexoacoin.com/#/", "name": "PulseX" },
+    { "url": "https://www.swap.win/", "name": "Swap.Win" },
+    { "url": "https://beta.0xtide.com/", "name": "Tide" }
   ],
   "bridges": [
     { "url": "https://bridge.pulsechain.com/", "name": "Official PulseChain Bridge" },
