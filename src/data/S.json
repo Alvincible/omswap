@@ -4,5 +4,10 @@
     { "url": "https://9x.9mm.pro/", "name": "9X" },
     { "url": "https://www.shadow.so/trade", "name": "Shadow" },
     { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" }
+  ],
+  "bridges": [
+    { "url": "https://gateway.soniclabs.com/", "name": "Sonic Gateway (official bridge)" },
+    { "url": "https://portalbridge.com/", "name": "Portal Bridge(Wormhole)" },
+    { "url": "https://app.rhino.fi/bridge", "name": "Rhino" }
   ]
 }

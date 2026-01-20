@@ -5,5 +5,12 @@
     { "url": "https://pulseswap.io/", "name": "PulseSwap" },
     { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" },
     { "url": "https://pulsex.hexoacoin.com/#/", "name": "PulseX" }
+  ],
+  "bridges": [
+    { "url": "https://bridge.pulsechain.com/", "name": "Official PulseChain Bridge" },
+    { "url": "https://libertyswap.finance/", "name": "LibertySwap" },
+    { "url": "https://www.empseal.xyz/native-bridge", "name": "EMPseal" },
+    { "url": "https://nexus.hyperlane.xyz/", "name": "Hyperlane" },
+    { "url": "https://app.pulseln.com/#", "name": "PulseLN" }
   ]
 }

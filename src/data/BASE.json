@@ -8,5 +8,10 @@
     { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" },
     { "url": "https://aerodrome.finance/", "name": "Aerodrome" },
     { "url": "https://app.uniswap.org/swap", "name": "Uniswap" }
+  ],
+  "bridges": [
+    { "url": "https://portalbridge.com/", "name": "Portal Bridge(Wormhole)" },
+    { "url": "https://stargate.finance/", "name": "Stargate Finance" },
+    { "url": "https://app.rhino.fi/bridge", "name": "Rhino" }
   ]
 }

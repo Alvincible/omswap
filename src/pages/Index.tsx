@@ -50,38 +50,13 @@ const chainWebsites: Record<string, Website[]> = {
   S: sData.websites,
 };
 
-// Placeholder bridges for all chains
 const chainBridges: Record<string, Website[]> = {
-  XCH: [
-    { url: "https://bridge-a.example.com", name: "Bridge A" },
-    { url: "https://bridge-b.example.com", name: "Bridge B" },
-    { url: "https://bridge-c.example.com", name: "Bridge C" },
-  ],
-  ETH: [
-    { url: "https://bridge-a.example.com", name: "Bridge A" },
-    { url: "https://bridge-b.example.com", name: "Bridge B" },
-    { url: "https://bridge-c.example.com", name: "Bridge C" },
-  ],
-  BASE: [
-    { url: "https://bridge-a.example.com", name: "Bridge A" },
-    { url: "https://bridge-b.example.com", name: "Bridge B" },
-    { url: "https://bridge-c.example.com", name: "Bridge C" },
-  ],
-  BSC: [
-    { url: "https://bridge-a.example.com", name: "Bridge A" },
-    { url: "https://bridge-b.example.com", name: "Bridge B" },
-    { url: "https://bridge-c.example.com", name: "Bridge C" },
-  ],
-  PLS: [
-    { url: "https://bridge-a.example.com", name: "Bridge A" },
-    { url: "https://bridge-b.example.com", name: "Bridge B" },
-    { url: "https://bridge-c.example.com", name: "Bridge C" },
-  ],
-  S: [
-    { url: "https://bridge-a.example.com", name: "Bridge A" },
-    { url: "https://bridge-b.example.com", name: "Bridge B" },
-    { url: "https://bridge-c.example.com", name: "Bridge C" },
-  ],
+  XCH: xchData.bridges || [],
+  ETH: ethData.bridges || [],
+  BASE: baseData.bridges || [],
+  BSC: bscData.bridges || [],
+  PLS: plsData.bridges || [],
+  S: sData.bridges || [],
 };
 
 // Color classes for each chain theme
