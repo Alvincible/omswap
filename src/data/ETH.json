@@ -9,7 +9,7 @@
     { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" }
   ],
   "bridges": [
-    { "url": "https://portalbridge.com/", "name": "Portal Bridge(Wormhole)" },
+    { "url": "https://portalbridge.com/", "name": "Portal Bridge (wormhole)" },
     { "url": "https://stargate.finance/", "name": "Stargate Finance" },
     { "url": "https://app.rhino.fi/bridge", "name": "Rhino" }
   ]

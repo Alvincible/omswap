@@ -7,7 +7,7 @@
   ],
   "bridges": [
     { "url": "https://gateway.soniclabs.com/", "name": "Sonic Gateway (official bridge)" },
-    { "url": "https://portalbridge.com/", "name": "Portal Bridge(Wormhole)" },
+    { "url": "https://portalbridge.com/", "name": "Portal Bridge (wormhole)" },
     { "url": "https://app.rhino.fi/bridge", "name": "Rhino" }
   ]
 }
