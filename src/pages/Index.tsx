@@ -136,71 +136,22 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-x-hidden">
       {/* Toolbar */}
       <div className={`w-full bg-gray-900 border-b ${colors.border} p-2`}>
-        <div className={`flex ${isMobile ? 'flex-col gap-2' : 'flex-row gap-4'} items-center justify-between`}>
-          {/* Left Panel Controls */}
-          <div className="flex-1 flex items-center gap-2">
+        <div className={`flex flex-col gap-2 ${isMobile ? '' : 'md:flex-row md:gap-4'} items-stretch md:items-center justify-between`}>
+          {/* Chain Selector - Always on top for mobile */}
+          <div className={`flex items-center justify-center ${isMobile ? 'order-first' : 'order-2'}`}>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className={`flex-1 bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between`}>
-                  <span className="truncate">{getWebsiteName(leftUrl)}   (<span className="text-blue-400">{leftUrl}</span>)</span>
-                  <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[300px] p-1">
-                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">DEXes</div>
-                {availableWebsites.map((website, index) => (
-                  <div key={index} className="flex items-center gap-1">
-                    <button
-                      onClick={() => handleUrlChange(website.url, 'left')}
-                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm"
-                    >
-                      {website.name}
-                    </button>
-                    <button
-                      onClick={() => window.open(website.url, '_blank')}
-                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </button>
-                  </div>
-                ))}
-                <div className="my-1 border-t border-gray-600" />
-                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Bridges</div>
-                {availableBridges.map((bridge, index) => (
-                  <div key={`bridge-${index}`} className="flex items-center gap-1">
-                    <button
-                      onClick={() => handleUrlChange(bridge.url, 'left')}
-                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm"
-                    >
-                      {bridge.name}
-                    </button>
-                    <button
-                      onClick={() => window.open(bridge.url, '_blank')}
-                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </button>
-                  </div>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-
-          {/* Chain Selector - Center */}
-          <div className="flex items-center">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className={`min-w-[200px] ${colors.bg} ${colors.border} ${colors.text} ${colors.hover} text-lg py-1`}>
+                <Button size="sm" variant="outline" className={`w-full md:min-w-[200px] ${colors.bg} ${colors.border} ${colors.text} ${colors.hover} text-lg py-1`}>
                   {selectedChain && chainLogos[selectedChain] && (
                     <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-6 w-6 mr-2" />
                   )}
                   {selectedChain || "Select Chain"}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600">
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 z-50">
                 {chainsData.chains.map((chain) => (
                   <DropdownMenuItem
                     key={chain.id}
@@ -217,28 +168,83 @@ const Index = () => {
             </DropdownMenu>
           </div>
 
-          {/* Right Panel Controls */}
-          <div className="flex-1 flex items-center gap-2">
+          {/* Left Panel Controls */}
+          <div className={`flex-1 flex items-center gap-2 min-w-0 ${isMobile ? 'order-2' : 'order-1'}`}>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className={`flex-1 bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between`}>
-                  <span className="truncate">{getWebsiteName(rightUrl)}   (<span className="text-blue-400">{rightUrl}</span>)</span>
-                  <ChevronDown className="h-4 w-4 ml-2 flex-shrink-0" />
+                <Button size="sm" variant="outline" className={`w-full bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between min-w-0`}>
+                  <span className="truncate text-xs md:text-sm">
+                    {getWebsiteName(leftUrl)}
+                    <span className="hidden md:inline text-blue-400 ml-1">({leftUrl})</span>
+                  </span>
+                  <ChevronDown className="h-4 w-4 ml-1 flex-shrink-0" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[300px] p-1">
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[280px] md:min-w-[300px] p-1 z-50 max-h-[60vh] overflow-y-auto">
                 <div className="px-2 py-1 text-xs text-gray-400 font-semibold">DEXes</div>
                 {availableWebsites.map((website, index) => (
                   <div key={index} className="flex items-center gap-1">
                     <button
-                      onClick={() => handleUrlChange(website.url, 'right')}
-                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm"
+                      onClick={() => handleUrlChange(website.url, 'left')}
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
                     >
                       {website.name}
                     </button>
                     <button
                       onClick={() => window.open(website.url, '_blank')}
-                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+                <div className="my-1 border-t border-gray-600" />
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Bridges</div>
+                {availableBridges.map((bridge, index) => (
+                  <div key={`bridge-${index}`} className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleUrlChange(bridge.url, 'left')}
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
+                    >
+                      {bridge.name}
+                    </button>
+                    <button
+                      onClick={() => window.open(bridge.url, '_blank')}
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Right Panel Controls */}
+          <div className={`flex-1 flex items-center gap-2 min-w-0 ${isMobile ? 'order-3' : 'order-3'}`}>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" variant="outline" className={`w-full bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between min-w-0`}>
+                  <span className="truncate text-xs md:text-sm">
+                    {getWebsiteName(rightUrl)}
+                    <span className="hidden md:inline text-blue-400 ml-1">({rightUrl})</span>
+                  </span>
+                  <ChevronDown className="h-4 w-4 ml-1 flex-shrink-0" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[280px] md:min-w-[300px] p-1 z-50 max-h-[60vh] overflow-y-auto">
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">DEXes</div>
+                {availableWebsites.map((website, index) => (
+                  <div key={index} className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleUrlChange(website.url, 'right')}
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
+                    >
+                      {website.name}
+                    </button>
+                    <button
+                      onClick={() => window.open(website.url, '_blank')}
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
                     </button>
@@ -250,13 +256,13 @@ const Index = () => {
                   <div key={`bridge-${index}`} className="flex items-center gap-1">
                     <button
                       onClick={() => handleUrlChange(bridge.url, 'right')}
-                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm"
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
                     >
                       {bridge.name}
                     </button>
                     <button
                       onClick={() => window.open(bridge.url, '_blank')}
-                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm"
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
                     </button>
@@ -269,8 +275,8 @@ const Index = () => {
       </div>
 
       {/* Main Content */}
-      <div className={`w-full h-[calc(100vh-80px)] flex ${isMobile ? 'flex-col' : 'flex-row'} gap-2 p-2`}>
-        <div className={`flex-1 bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
+      <div className={`w-full ${isMobile ? 'h-[calc(100vh-140px)]' : 'h-[calc(100vh-60px)]'} flex ${isMobile ? 'flex-col' : 'flex-row'} gap-1 md:gap-2 p-1 md:p-2`}>
+        <div className={`${isMobile ? 'h-1/2' : 'flex-1'} bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
           {isEmbeddable(leftUrl) ? (
             <iframe
               src={leftUrl}
@@ -282,7 +288,7 @@ const Index = () => {
             <OpenInNewTabButton url={leftUrl} name={getWebsiteName(leftUrl)} />
           )}
         </div>
-        <div className={`flex-1 bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
+        <div className={`${isMobile ? 'h-1/2' : 'flex-1'} bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
           {isEmbeddable(rightUrl) ? (
             <iframe
               src={rightUrl}
