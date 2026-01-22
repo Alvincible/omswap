@@ -139,48 +139,20 @@ const Index = () => {
     <div className="min-h-screen bg-black overflow-x-hidden">
       {/* Toolbar */}
       <div className={`w-full bg-gray-900 border-b ${colors.border} p-2`}>
-        <div className={`flex flex-col gap-2 ${isMobile ? '' : 'md:flex-row md:gap-4'} items-stretch md:items-center justify-between`}>
-          {/* Chain Selector - Always on top for mobile */}
-          <div className={`flex items-center justify-center ${isMobile ? 'order-first' : 'order-2'}`}>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className={`w-full md:min-w-[200px] ${colors.bg} ${colors.border} ${colors.text} ${colors.hover} text-lg py-1`}>
-                  {selectedChain && chainLogos[selectedChain] && (
-                    <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-6 w-6 mr-2" />
-                  )}
-                  {selectedChain || "Select Chain"}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600 z-50">
-                {chainsData.chains.map((chain) => (
-                  <DropdownMenuItem
-                    key={chain.id}
-                    onClick={() => handleChainChange(chain.name)}
-                    className="text-white hover:bg-gray-700 cursor-pointer"
-                  >
-                    {chainLogos[chain.name] && (
-                      <img src={chainLogos[chain.name]} alt={chain.name} className="h-4 w-4 mr-2" />
-                    )}
-                    {chain.name}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-
+        <div className="flex flex-row gap-1 md:gap-4 items-center justify-between">
           {/* Left Panel Controls */}
-          <div className={`flex-1 flex items-center gap-2 min-w-0 ${isMobile ? 'order-2' : 'order-1'}`}>
+          <div className="flex-1 flex items-center gap-1 md:gap-2 min-w-0 order-1">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className={`w-full bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between min-w-0`}>
-                  <span className="truncate text-xs md:text-sm">
+                <Button size="sm" variant="outline" className={`w-full bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between min-w-0 px-2 md:px-3`}>
+                  <span className="truncate text-xs md:text-sm max-w-[60px] md:max-w-none">
                     {getWebsiteName(leftUrl)}
-                    <span className="hidden md:inline text-blue-400 ml-1">({leftUrl})</span>
                   </span>
-                  <ChevronDown className="h-4 w-4 ml-1 flex-shrink-0" />
+                  <span className="hidden md:inline text-blue-400 ml-1 truncate">({leftUrl})</span>
+                  <ChevronDown className="h-3 w-3 md:h-4 md:w-4 ml-1 flex-shrink-0" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[280px] md:min-w-[300px] p-1 z-50 max-h-[60vh] overflow-y-auto">
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[200px] md:min-w-[300px] p-1 z-50 max-h-[60vh] overflow-y-auto">
                 <div className="px-2 py-1 text-xs text-gray-400 font-semibold">DEXes</div>
                 {availableWebsites.map((website, index) => (
                   <div key={index} className="flex items-center gap-1">
@@ -220,19 +192,47 @@ const Index = () => {
             </DropdownMenu>
           </div>
 
-          {/* Right Panel Controls */}
-          <div className={`flex-1 flex items-center gap-2 min-w-0 ${isMobile ? 'order-3' : 'order-3'}`}>
+          {/* Chain Selector - Center */}
+          <div className="flex items-center justify-center order-2 flex-shrink-0">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className={`w-full bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between min-w-0`}>
-                  <span className="truncate text-xs md:text-sm">
-                    {getWebsiteName(rightUrl)}
-                    <span className="hidden md:inline text-blue-400 ml-1">({rightUrl})</span>
-                  </span>
-                  <ChevronDown className="h-4 w-4 ml-1 flex-shrink-0" />
+                <Button size="sm" variant="outline" className={`min-w-fit ${colors.bg} ${colors.border} ${colors.text} ${colors.hover} text-sm md:text-lg py-1 px-2 md:px-3 whitespace-nowrap`}>
+                  {selectedChain && chainLogos[selectedChain] && (
+                    <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-5 w-5 md:h-6 md:w-6 mr-1 md:mr-2" />
+                  )}
+                  <span>{selectedChain || "Select Chain"}</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[280px] md:min-w-[300px] p-1 z-50 max-h-[60vh] overflow-y-auto">
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 z-50">
+                {chainsData.chains.map((chain) => (
+                  <DropdownMenuItem
+                    key={chain.id}
+                    onClick={() => handleChainChange(chain.name)}
+                    className="text-white hover:bg-gray-700 cursor-pointer"
+                  >
+                    {chainLogos[chain.name] && (
+                      <img src={chainLogos[chain.name]} alt={chain.name} className="h-4 w-4 mr-2" />
+                    )}
+                    {chain.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Right Panel Controls */}
+          <div className="flex-1 flex items-center gap-1 md:gap-2 min-w-0 order-3">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" variant="outline" className={`w-full bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between min-w-0 px-2 md:px-3`}>
+                  <span className="truncate text-xs md:text-sm max-w-[60px] md:max-w-none">
+                    {getWebsiteName(rightUrl)}
+                  </span>
+                  <span className="hidden md:inline text-blue-400 ml-1 truncate">({rightUrl})</span>
+                  <ChevronDown className="h-3 w-3 md:h-4 md:w-4 ml-1 flex-shrink-0" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[200px] md:min-w-[300px] p-1 z-50 max-h-[60vh] overflow-y-auto">
                 <div className="px-2 py-1 text-xs text-gray-400 font-semibold">DEXes</div>
                 {availableWebsites.map((website, index) => (
                   <div key={index} className="flex items-center gap-1">
@@ -275,7 +275,7 @@ const Index = () => {
       </div>
 
       {/* Main Content */}
-      <div className={`w-full ${isMobile ? 'h-[calc(100vh-140px)]' : 'h-[calc(100vh-60px)]'} flex ${isMobile ? 'flex-col' : 'flex-row'} gap-1 md:gap-2 p-1 md:p-2`}>
+      <div className={`w-full ${isMobile ? 'h-[calc(100vh-52px)]' : 'h-[calc(100vh-60px)]'} flex ${isMobile ? 'flex-col' : 'flex-row'} gap-1 md:gap-2 p-1 md:p-2`}>
         <div className={`${isMobile ? 'h-1/2' : 'flex-1'} bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
           {isEmbeddable(leftUrl) ? (
             <iframe
