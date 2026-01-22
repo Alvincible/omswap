@@ -196,11 +196,11 @@ const Index = () => {
           <div className="flex items-center justify-center order-2 flex-shrink-0">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button size="sm" variant="outline" className={`min-w-[70px] md:min-w-[200px] ${colors.bg} ${colors.border} ${colors.text} ${colors.hover} text-sm md:text-lg py-1 px-2 md:px-3`}>
+                <Button size="sm" variant="outline" className={`min-w-fit ${colors.bg} ${colors.border} ${colors.text} ${colors.hover} text-sm md:text-lg py-1 px-2 md:px-3 whitespace-nowrap`}>
                   {selectedChain && chainLogos[selectedChain] && (
-                    <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-5 w-5 md:h-6 md:w-6 md:mr-2" />
+                    <img src={chainLogos[selectedChain]} alt={selectedChain} className="h-5 w-5 md:h-6 md:w-6 mr-1 md:mr-2" />
                   )}
-                  <span className="hidden md:inline">{selectedChain || "Select Chain"}</span>
+                  <span>{selectedChain || "Select Chain"}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-gray-800 border-gray-600 z-50">
