@@ -76,7 +76,7 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
 };
 
 // Sites that block iframe embedding
-const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz", "dex.9mm.pro", "changenow.io", "app.rubic.exchange", "minswap.org", "app.sundae.fi", "shadow.so", "stargate.finance", "portalbridge.com", "bnbchain.org", "gateway.soniclabs.com"];
+const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz", "dex.9mm.pro", "changenow.io", "app.rubic.exchange", "minswap.org", "app.sundae.fi", "shadow.so", "stargate.finance", "portalbridge.com", "bnbchain.org", "gateway.soniclabs.com", "redeem.midnight.gd"];
 
 const isEmbeddable = (url: string) => {
   return !nonEmbeddableSites.some(site => url.includes(site));
