@@ -1,0 +1,30 @@
+{
+  "websites": [
+    {
+      "url": "https://app.dexhunter.io/",
+      "name": "DexHunter"
+    },
+    {
+      "url": "https://minswap.org/aggregator",
+      "name": "Minswap"
+    },
+    {
+      "url": "https://app.sundae.fi/exchange?given=ada.lovelace",
+      "name": "SundaeSwap"
+    }
+  ],
+  "bridges": [
+    {
+      "url": "https://changenow.io/",
+      "name": "ChangeNOW"
+    },
+    {
+      "url": "https://app.rubic.exchange/",
+      "name": "Rubic Exchange"
+    },
+    {
+      "url": "https://redeem.midnight.gd/",
+      "name": "Midnight Redeem"
+    }
+  ]
+}

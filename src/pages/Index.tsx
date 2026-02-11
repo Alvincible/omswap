@@ -12,6 +12,7 @@ import baseData from "@/data/BASE.json";
 import bscData from "@/data/BSC.json";
 import plsData from "@/data/PLS.json";
 import sData from "@/data/S.json";
+import adaData from "@/data/ADA.json";
 
 // Import chain logos
 import xchLogo from "@/assets/chains/xch.png";
@@ -20,6 +21,7 @@ import baseLogo from "@/assets/chains/base.png";
 import bscLogo from "@/assets/chains/bsc.png";
 import plsLogo from "@/assets/chains/pls.png";
 import sLogo from "@/assets/chains/s.png";
+import adaLogo from "@/assets/chains/ada.png";
 
 const chainLogos: Record<string, string> = {
   XCH: xchLogo,
@@ -28,6 +30,7 @@ const chainLogos: Record<string, string> = {
   BSC: bscLogo,
   PLS: plsLogo,
   S: sLogo,
+  ADA: adaLogo,
 };
 
 interface Website {
@@ -48,6 +51,7 @@ const chainWebsites: Record<string, Website[]> = {
   BSC: bscData.websites,
   PLS: plsData.websites,
   S: sData.websites,
+  ADA: adaData.websites,
 };
 
 const chainBridges: Record<string, Website[]> = {
@@ -57,6 +61,7 @@ const chainBridges: Record<string, Website[]> = {
   BSC: bscData.bridges || [],
   PLS: plsData.bridges || [],
   S: sData.bridges || [],
+  ADA: adaData.bridges || [],
 };
 
 // Color classes for each chain theme
@@ -67,10 +72,11 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
   yellow: { border: "border-yellow-500", bg: "bg-yellow-500", hover: "hover:bg-yellow-400", text: "text-black" },
   purple: { border: "border-purple-500", bg: "bg-purple-600", hover: "hover:bg-purple-500", text: "text-black" },
   orange: { border: "border-orange-500", bg: "bg-orange-500", hover: "hover:bg-orange-400", text: "text-black" },
+  cardano: { border: "border-blue-600", bg: "bg-blue-700", hover: "hover:bg-blue-600", text: "text-white" },
 };
 
 // Sites that block iframe embedding
-const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz", "dex.9mm.pro"];
+const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz", "dex.9mm.pro", "changenow.io", "app.rubic.exchange", "minswap.org", "app.sundae.fi", "shadow.so", "stargate.finance", "portalbridge.com", "bnbchain.org", "gateway.soniclabs.com"];
 
 const isEmbeddable = (url: string) => {
   return !nonEmbeddableSites.some(site => url.includes(site));
