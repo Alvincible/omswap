@@ -8,6 +8,7 @@
   ],
   "bridges": [
     { "url": "https://www.warp.green/bridge", "name": "Warp.Green" },
-    { "url": "https://warp.awizard.dev/bridge", "name": "aWizard Emoji Bridge" }
+    { "url": "https://warp.awizard.dev/bridge", "name": "aWizard Emoji Bridge" },
+    { "url": "https://changenow.io/", "name": "ChangeNOW" }
   ]
 }
