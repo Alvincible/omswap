@@ -1,20 +1,62 @@
 {
   "websites": [
-    { "url": "https://app.piteas.io/", "name": "Piteas" },
-    { "url": "https://9x.9mm.pro/", "name": "9X" },
-    { "url": "https://pulseswap.io/", "name": "PulseSwap" },
-    { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" },
-    { "url": "https://pulsex.hexoacoin.com/#/", "name": "PulseX" },
-    { "url": "https://www.swap.win/", "name": "Swap.Win" },
-    { "url": "https://beta.0xtide.com/", "name": "Tide" },
-    { "url": "https://switch.win/", "name": "Switch" }
+    {
+      "url": "https://app.piteas.io/",
+      "name": "Piteas"
+    },
+    {
+      "url": "https://9x.9mm.pro/",
+      "name": "9X"
+    },
+    {
+      "url": "https://pulseswap.io/",
+      "name": "PulseSwap"
+    },
+    {
+      "url": "https://dex.9mm.pro/swap",
+      "name": "9mm DEX"
+    },
+    {
+      "url": "https://pulsex.hexoacoin.com/#/",
+      "name": "PulseX"
+    },
+    {
+      "url": "https://www.swap.win/",
+      "name": "Swap.Win"
+    },
+    {
+      "url": "https://beta.0xtide.com/",
+      "name": "Tide"
+    },
+    {
+      "url": "https://switch.win/",
+      "name": "Switch.Win"
+    }
   ],
   "bridges": [
-    { "url": "https://bridge.pulsechain.com/", "name": "Official PulseChain Bridge" },
-    { "url": "https://libertyswap.finance/", "name": "LibertySwap" },
-    { "url": "https://www.empseal.xyz/native-bridge", "name": "EMPseal" },
-    { "url": "https://nexus.hyperlane.xyz/", "name": "Hyperlane" },
-    { "url": "https://app.pulseln.com/#", "name": "PulseLN" },
-    { "url": "https://changenow.io/", "name": "ChangeNOW" }
+    {
+      "url": "https://bridge.pulsechain.com/",
+      "name": "Official PulseChain Bridge"
+    },
+    {
+      "url": "https://libertyswap.finance/",
+      "name": "LibertySwap"
+    },
+    {
+      "url": "https://www.empseal.xyz/native-bridge",
+      "name": "EMPseal"
+    },
+    {
+      "url": "https://nexus.hyperlane.xyz/",
+      "name": "Hyperlane"
+    },
+    {
+      "url": "https://app.pulseln.com/#",
+      "name": "PulseLN"
+    },
+    {
+      "url": "https://changenow.io/",
+      "name": "ChangeNOW"
+    }
   ]
 }
