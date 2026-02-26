@@ -1,17 +1,54 @@
 {
   "websites": [
-    { "url": "https://swap.defillama.com/", "name": "DefiLlama" },
-    { "url": "https://9x.9mm.pro/", "name": "9X" },
-    { "url": "https://swap.cow.fi/", "name": "CoW Swap" },
-    { "url": "https://matcha.xyz/", "name": "Matcha" },
-    { "url": "https://kyberswap.com/swap", "name": "KyberSwap" },
-    { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" },
-    { "url": "https://aerodrome.finance/", "name": "Aerodrome" },
-    { "url": "https://app.uniswap.org/swap", "name": "Uniswap" }
+    {
+      "url": "https://swap.defillama.com/",
+      "name": "DefiLlama"
+    },
+    {
+      "url": "https://9x.9mm.pro/",
+      "name": "9X"
+    },
+    {
+      "url": "https://cast.awizard.dev/",
+      "name": "aWizard Caster"
+    },
+    {
+      "url": "https://swap.cow.fi/",
+      "name": "CoW Swap"
+    },
+    {
+      "url": "https://matcha.xyz/",
+      "name": "Matcha"
+    },
+    {
+      "url": "https://kyberswap.com/swap",
+      "name": "KyberSwap"
+    },
+    {
+      "url": "https://dex.9mm.pro/swap",
+      "name": "9mm DEX"
+    },
+    {
+      "url": "https://aerodrome.finance/",
+      "name": "Aerodrome"
+    },
+    {
+      "url": "https://app.uniswap.org/swap",
+      "name": "Uniswap"
+    }
   ],
   "bridges": [
-    { "url": "https://portalbridge.com/", "name": "Portal Bridge (wormhole)" },
-    { "url": "https://stargate.finance/", "name": "Stargate Finance" },
-    { "url": "https://app.rhino.fi/bridge", "name": "Rhino" }
+    {
+      "url": "https://portalbridge.com/",
+      "name": "Portal Bridge (wormhole)"
+    },
+    {
+      "url": "https://stargate.finance/",
+      "name": "Stargate Finance"
+    },
+    {
+      "url": "https://app.rhino.fi/bridge",
+      "name": "Rhino"
+    }
   ]
 }
