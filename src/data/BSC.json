@@ -1,16 +1,4 @@
 {
-  "websites": [
-    { "url": "https://swap.defillama.com/", "name": "DefiLlama" },
-    { "url": "https://swap.cow.fi/", "name": "CoW Swap" },
-    { "url": "https://matcha.xyz/", "name": "Matcha" },
-    { "url": "https://kyberswap.com/swap", "name": "KyberSwap" },
-    { "url": "https://app.uniswap.org/swap", "name": "Uniswap" },
-    { "url": "https://pancakeswap.finance/", "name": "PancakeSwap" },
-    { "url": "https://dex.9mm.pro/swap", "name": "9mm DEX" }
-  ],
-  "bridges": [
-    { "url": "https://www.bnbchain.org/en/bnb-chain-bridge", "name": "BNB Chain Bridge (official bridge)" },
-    { "url": "https://portalbridge.com/", "name": "Portal Bridge (wormhole)" },
-    { "url": "https://stargate.finance/", "name": "Stargate Finance" }
-  ]
+  "websites": ["defillama", "cow-swap", "matcha", "kyberswap", "uniswap", "pancakeswap", "9mm-dex"],
+  "bridges": ["bnb-chain-bridge", "portal-bridge", "stargate-finance"]
 }

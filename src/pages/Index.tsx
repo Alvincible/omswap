@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ChevronDown, ExternalLink, SplitSquareHorizontal } from "lucide-react";
 import chainsData from "@/data/Chains.json";
+import referencesData from "@/data/References.json";
 
 // Import all chain website data
 import xchData from "@/data/XCH.json";
@@ -36,6 +37,7 @@ const chainLogos: Record<string, string> = {
 interface Website {
   url: string;
   name: string;
+  iFrame: boolean;
 }
 
 interface Chain {
@@ -44,24 +46,58 @@ interface Chain {
   color: string;
 }
 
+interface Reference {
+  id: string;
+  url: string;
+  name: string;
+  iFrame: boolean;
+}
+
+// Create lookup maps for references
+const websiteMap = new Map<string, Reference>();
+const bridgeMap = new Map<string, Reference>();
+
+referencesData.websites.forEach((ref) => {
+  websiteMap.set(ref.id, ref);
+});
+
+referencesData.bridges.forEach((ref) => {
+  bridgeMap.set(ref.id, ref);
+});
+
+// Helper function to resolve IDs to Website objects
+const resolveWebsiteIds = (ids: string[]): Website[] => {
+  return ids
+    .map((id) => websiteMap.get(id))
+    .filter((ref): ref is Reference => ref !== undefined)
+    .map((ref) => ({ url: ref.url, name: ref.name, iFrame: ref.iFrame }));
+};
+
+const resolveBridgeIds = (ids: string[]): Website[] => {
+  return ids
+    .map((id) => bridgeMap.get(id))
+    .filter((ref): ref is Reference => ref !== undefined)
+    .map((ref) => ({ url: ref.url, name: ref.name, iFrame: ref.iFrame }));
+};
+
 const chainWebsites: Record<string, Website[]> = {
-  XCH: xchData.websites,
-  ETH: ethData.websites,
-  BASE: baseData.websites,
-  BSC: bscData.websites,
-  PLS: plsData.websites,
-  S: sData.websites,
-  ADA: adaData.websites,
+  XCH: resolveWebsiteIds(xchData.websites),
+  ETH: resolveWebsiteIds(ethData.websites),
+  BASE: resolveWebsiteIds(baseData.websites),
+  BSC: resolveWebsiteIds(bscData.websites),
+  PLS: resolveWebsiteIds(plsData.websites),
+  S: resolveWebsiteIds(sData.websites),
+  ADA: resolveWebsiteIds(adaData.websites),
 };
 
 const chainBridges: Record<string, Website[]> = {
-  XCH: xchData.bridges || [],
-  ETH: ethData.bridges || [],
-  BASE: baseData.bridges || [],
-  BSC: bscData.bridges || [],
-  PLS: plsData.bridges || [],
-  S: sData.bridges || [],
-  ADA: adaData.bridges || [],
+  XCH: resolveBridgeIds(xchData.bridges || []),
+  ETH: resolveBridgeIds(ethData.bridges || []),
+  BASE: resolveBridgeIds(baseData.bridges || []),
+  BSC: resolveBridgeIds(bscData.bridges || []),
+  PLS: resolveBridgeIds(plsData.bridges || []),
+  S: resolveBridgeIds(sData.bridges || []),
+  ADA: resolveBridgeIds(adaData.bridges || []),
 };
 
 // Color classes for each chain theme
@@ -75,11 +111,22 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
   cardano: { border: "border-blue-600", bg: "bg-blue-700", hover: "hover:bg-blue-600", text: "text-white" },
 };
 
-// Sites that block iframe embedding
-const nonEmbeddableSites = ["kyberswap.com", "matcha.xyz", "dex.9mm.pro", "changenow.io", "app.rubic.exchange", "minswap.org", "app.sundae.fi", "shadow.so", "stargate.finance", "portalbridge.com", "bnbchain.org", "gateway.soniclabs.com", "redeem.midnight.gd"];
+// Helper function to check if a URL is embeddable based on iFrame flag
+const isEmbeddable = (url: string, websites: Website[], bridges: Website[]): boolean => {
+  // Check websites first
+  const website = websites.find(w => w.url === url);
+  if (website) {
+    return website.iFrame;
+  }
 
-const isEmbeddable = (url: string) => {
-  return !nonEmbeddableSites.some(site => url.includes(site));
+  // Check bridges
+  const bridge = bridges.find(b => b.url === url);
+  if (bridge) {
+    return bridge.iFrame;
+  }
+
+  // Default to true if not found (shouldn't happen in normal operation)
+  return true;
 };
 
 const Index = () => {
@@ -283,7 +330,7 @@ const Index = () => {
       {/* Main Content */}
       <div className={`w-full ${isMobile ? 'h-[calc(100vh-52px)]' : 'h-[calc(100vh-60px)]'} flex ${isMobile ? 'flex-col' : 'flex-row'} gap-1 md:gap-2 p-1 md:p-2`}>
         <div className={`${isMobile ? 'h-1/2' : 'flex-1'} bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
-          {isEmbeddable(leftUrl) ? (
+          {isEmbeddable(leftUrl, availableWebsites, availableBridges) ? (
             <iframe
               src={leftUrl}
               className="w-full h-full border-0"
@@ -295,7 +342,7 @@ const Index = () => {
           )}
         </div>
         <div className={`${isMobile ? 'h-1/2' : 'flex-1'} bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
-          {isEmbeddable(rightUrl) ? (
+          {isEmbeddable(rightUrl, availableWebsites, availableBridges) ? (
             <iframe
               src={rightUrl}
               className="w-full h-full border-0"
