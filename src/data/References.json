@@ -1,0 +1,252 @@
+{
+    "websites": [
+        {
+            "id": "dexhunter",
+            "url": "https://app.dexhunter.io/",
+            "name": "Agg - DexHunter",
+            "iFrame": true
+        },
+        {
+            "id": "minswap",
+            "url": "https://minswap.org/aggregator",
+            "name": "Agg - Minswap",
+            "iFrame": false
+        },
+        {
+            "id": "sundaeswap",
+            "url": "https://app.sundae.fi/exchange?given=ada.lovelace",
+            "name": "Dex - SundaeSwap",
+            "iFrame": false
+        },
+        {
+            "id": "defillama",
+            "url": "https://swap.defillama.com/",
+            "name": "Agg - DefiLlama",
+            "iFrame": true
+        },
+        {
+            "id": "9x",
+            "url": "https://9x.9mm.pro/",
+            "name": "Agg - 9X",
+            "iFrame": true
+        },
+        {
+            "id": "awizard-caster",
+            "url": "https://cast.awizard.dev/",
+            "name": "Agg - aWizard Caster",
+            "iFrame": true
+        },
+        {
+            "id": "cow-swap",
+            "url": "https://swap.cow.fi/",
+            "name": "Agg - CoW Swap",
+            "iFrame": true
+        },
+        {
+            "id": "matcha",
+            "url": "https://matcha.xyz/",
+            "name": "Agg - Matcha",
+            "iFrame": false
+        },
+        {
+            "id": "kyberswap",
+            "url": "https://kyberswap.com/swap",
+            "name": "Agg - KyberSwap",
+            "iFrame": false
+        },
+        {
+            "id": "9mm-dex",
+            "url": "https://dex.9mm.pro/swap",
+            "name": "Dex - 9mm",
+            "iFrame": false
+        },
+        {
+            "id": "aerodrome",
+            "url": "https://aerodrome.finance/",
+            "name": "Dex - Aerodrome",
+            "iFrame": true
+        },
+        {
+            "id": "uniswap",
+            "url": "https://app.uniswap.org/swap",
+            "name": "Dex - Uniswap",
+            "iFrame": true
+        },
+        {
+            "id": "pancakeswap",
+            "url": "https://pancakeswap.finance/",
+            "name": "Dex - PancakeSwap",
+            "iFrame": true
+        },
+        {
+            "id": "piteas",
+            "url": "https://app.piteas.io/",
+            "name": "Agg - Piteas",
+            "iFrame": true
+        },
+        {
+            "id": "pulseswap",
+            "url": "https://pulseswap.io/",
+            "name": "Agg - PulseSwap",
+            "iFrame": true
+        },
+        {
+            "id": "pulsex",
+            "url": "https://pulsex.hexoacoin.com/#/",
+            "name": "Dex - PulseX",
+            "iFrame": true
+        },
+        {
+            "id": "swap-win",
+            "url": "https://www.swap.win/",
+            "name": "Agg - Swap.Win",
+            "iFrame": true
+        },
+        {
+            "id": "tide",
+            "url": "https://beta.0xtide.com/",
+            "name": "Dex - Tide",
+            "iFrame": true
+        },
+        {
+            "id": "switch-win",
+            "url": "https://switch.win/",
+            "name": "Agg - Switch.Win",
+            "iFrame": true
+        },
+        {
+            "id": "shadow",
+            "url": "https://www.shadow.so/trade",
+            "name": "Dex - Shadow",
+            "iFrame": false
+        },
+        {
+            "id": "dexie",
+            "url": "https://dexie.space/swap",
+            "name": "Agg - Dexie",
+            "iFrame": true
+        },
+        {
+            "id": "tibetswap",
+            "url": "https://v2.tibetswap.io/",
+            "name": "Dex - TibetSwap",
+            "iFrame": true
+        },
+        {
+            "id": "pussyswap",
+            "url": "https://pussyswap.pro/",
+            "name": "Agg - PussySwap",
+            "iFrame": true
+        },
+        {
+            "id": "awizard-caster-wxch",
+            "url": "https://cast.awizard.dev/",
+            "name": "Agg - aWizard Caster - wXCH on Base",
+            "iFrame": true
+        },
+        {
+            "id": "defillama-wxch",
+            "url": "https://swap.defillama.com/",
+            "name": "Agg - DefiLlama - wXCH on Base",
+            "iFrame": true
+        },
+        {
+            "id": "9x-wxch",
+            "url": "https://9x.9mm.pro/",
+            "name": "Agg - 9X - wXCH on Base",
+            "iFrame": true
+        }
+    ],
+    "bridges": [
+        {
+            "id": "changenow",
+            "url": "https://changenow.io/",
+            "name": "ChangeNOW",
+            "iFrame": false
+        },
+        {
+            "id": "rubic-exchange",
+            "url": "https://app.rubic.exchange/",
+            "name": "Rubic Exchange",
+            "iFrame": false
+        },
+        {
+            "id": "midnight-redeem",
+            "url": "https://redeem.midnight.gd/",
+            "name": "Midnight Redeem",
+            "iFrame": false
+        },
+        {
+            "id": "portal-bridge",
+            "url": "https://portalbridge.com/",
+            "name": "Portal Bridge (wormhole)",
+            "iFrame": false
+        },
+        {
+            "id": "stargate-finance",
+            "url": "https://stargate.finance/",
+            "name": "Stargate Finance",
+            "iFrame": false
+        },
+        {
+            "id": "rhino",
+            "url": "https://app.rhino.fi/bridge",
+            "name": "Rhino",
+            "iFrame": true
+        },
+        {
+            "id": "bnb-chain-bridge",
+            "url": "https://www.bnbchain.org/en/bnb-chain-bridge",
+            "name": "BNB Chain Bridge (official bridge)",
+            "iFrame": false
+        },
+        {
+            "id": "pulsechain-bridge",
+            "url": "https://bridge.pulsechain.com/",
+            "name": "Official PulseChain Bridge",
+            "iFrame": true
+        },
+        {
+            "id": "libertyswap",
+            "url": "https://libertyswap.finance/",
+            "name": "LibertySwap",
+            "iFrame": true
+        },
+        {
+            "id": "empseal",
+            "url": "https://www.empseal.xyz/native-bridge",
+            "name": "EMPseal",
+            "iFrame": true
+        },
+        {
+            "id": "hyperlane",
+            "url": "https://nexus.hyperlane.xyz/",
+            "name": "Hyperlane",
+            "iFrame": true
+        },
+        {
+            "id": "pulseln",
+            "url": "https://app.pulseln.com/#",
+            "name": "PulseLN",
+            "iFrame": true
+        },
+        {
+            "id": "sonic-gateway",
+            "url": "https://gateway.soniclabs.com/",
+            "name": "Sonic Gateway (official bridge)",
+            "iFrame": false
+        },
+        {
+            "id": "warp-green",
+            "url": "https://www.warp.green/bridge",
+            "name": "Warp.Green",
+            "iFrame": true
+        },
+        {
+            "id": "awizard-emoji-bridge",
+            "url": "https://warp.awizard.dev/bridge",
+            "name": "aWizard Emoji Bridge",
+            "iFrame": true
+        }
+    ]
+}
