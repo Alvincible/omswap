@@ -1,5 +1,5 @@
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ChevronDown, ExternalLink, SplitSquareHorizontal } from "lucide-react";
@@ -100,6 +100,12 @@ const chainBridges: Record<string, Website[]> = {
   ADA: resolveBridgeIds(adaData.bridges || []),
 };
 
+// Create a chain lookup map for O(1) access
+const chainMap = new Map<string, Chain>();
+(chainsData.chains as Chain[]).forEach((chain) => {
+  chainMap.set(chain.name, chain);
+});
+
 // Color classes for each chain theme
 const chainColorClasses: Record<string, { border: string; bg: string; hover: string; text: string }> = {
   green: { border: "border-green-500", bg: "bg-green-600", hover: "hover:bg-green-500", text: "text-black" },
@@ -111,24 +117,6 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
   cardano: { border: "border-blue-600", bg: "bg-blue-700", hover: "hover:bg-blue-600", text: "text-white" },
 };
 
-// Helper function to check if a URL is embeddable based on iFrame flag
-const isEmbeddable = (url: string, websites: Website[], bridges: Website[]): boolean => {
-  // Check websites first
-  const website = websites.find(w => w.url === url);
-  if (website) {
-    return website.iFrame;
-  }
-
-  // Check bridges
-  const bridge = bridges.find(b => b.url === url);
-  if (bridge) {
-    return bridge.iFrame;
-  }
-
-  // Default to true if not found (shouldn't happen in normal operation)
-  return true;
-};
-
 const Index = () => {
   const isMobile = useIsMobile();
   const [leftUrl, setLeftUrl] = useState("https://dexie.space/swap");
@@ -138,13 +126,47 @@ const Index = () => {
   const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["XCH"]);
   const [availableBridges, setAvailableBridges] = useState<Website[]>(chainBridges["XCH"]);
 
+  // Create URL-to-Website maps for O(1) lookups
+  const websiteUrlMap = useMemo(() => {
+    const map = new Map<string, Website>();
+    availableWebsites.forEach((website) => {
+      map.set(website.url, website);
+    });
+    return map;
+  }, [availableWebsites]);
+
+  const bridgeUrlMap = useMemo(() => {
+    const map = new Map<string, Website>();
+    availableBridges.forEach((bridge) => {
+      map.set(bridge.url, bridge);
+    });
+    return map;
+  }, [availableBridges]);
+
+  // Memoize embeddable checks
+  const leftEmbeddable = useMemo(() => {
+    const website = websiteUrlMap.get(leftUrl);
+    if (website) return website.iFrame;
+    const bridge = bridgeUrlMap.get(leftUrl);
+    if (bridge) return bridge.iFrame;
+    return true;
+  }, [leftUrl, websiteUrlMap, bridgeUrlMap]);
+
+  const rightEmbeddable = useMemo(() => {
+    const website = websiteUrlMap.get(rightUrl);
+    if (website) return website.iFrame;
+    const bridge = bridgeUrlMap.get(rightUrl);
+    if (bridge) return bridge.iFrame;
+    return true;
+  }, [rightUrl, websiteUrlMap, bridgeUrlMap]);
+
   // Get current color classes based on selected chain
   const colors = chainColorClasses[selectedColor] || chainColorClasses.green;
 
-  const handleChainChange = (chain: string) => {
+  const handleChainChange = useCallback((chain: string) => {
     setSelectedChain(chain);
-    // Find the chain data to get the color
-    const chainData = (chainsData.chains as Chain[]).find(c => c.name === chain);
+    // Use Map for O(1) lookup instead of array.find()
+    const chainData = chainMap.get(chain);
     if (chainData) {
       setSelectedColor(chainData.color);
     }
@@ -156,20 +178,23 @@ const Index = () => {
       setAvailableWebsites(chainWebsites[chain]);
       setAvailableBridges(chainBridges[chain] || []);
     }
-  };
+  }, []);
 
-  const handleUrlChange = (url: string, side: 'left' | 'right') => {
+  const handleUrlChange = useCallback((url: string, side: 'left' | 'right') => {
     if (side === 'left') {
       setLeftUrl(url);
     } else {
       setRightUrl(url);
     }
-  };
+  }, []);
 
-  const getWebsiteName = (url: string) => {
-    const website = availableWebsites.find(w => w.url === url);
-    return website?.name || url;
-  };
+  const getWebsiteName = useCallback((url: string) => {
+    const website = websiteUrlMap.get(url);
+    if (website) return website.name;
+    const bridge = bridgeUrlMap.get(url);
+    if (bridge) return bridge.name;
+    return url;
+  }, [websiteUrlMap, bridgeUrlMap]);
 
   const OpenInNewTabButton = ({ url, name }: { url: string; name: string }) => (
     <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900">
@@ -330,7 +355,7 @@ const Index = () => {
       {/* Main Content */}
       <div className={`w-full ${isMobile ? 'h-[calc(100vh-52px)]' : 'h-[calc(100vh-60px)]'} flex ${isMobile ? 'flex-col' : 'flex-row'} gap-1 md:gap-2 p-1 md:p-2`}>
         <div className={`${isMobile ? 'h-1/2' : 'flex-1'} bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
-          {isEmbeddable(leftUrl, availableWebsites, availableBridges) ? (
+          {leftEmbeddable ? (
             <iframe
               src={leftUrl}
               className="w-full h-full border-0"
@@ -342,7 +367,7 @@ const Index = () => {
           )}
         </div>
         <div className={`${isMobile ? 'h-1/2' : 'flex-1'} bg-gray-900 border ${colors.border} rounded-lg shadow-sm overflow-hidden transition-all duration-300`}>
-          {isEmbeddable(rightUrl, availableWebsites, availableBridges) ? (
+          {rightEmbeddable ? (
             <iframe
               src={rightUrl}
               className="w-full h-full border-0"
