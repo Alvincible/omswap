@@ -3,157 +3,157 @@
         {
             "id": "dexhunter",
             "url": "https://app.dexhunter.io/",
-            "name": "DexHunter",
+            "name": "Agg - DexHunter",
             "iFrame": true
         },
         {
             "id": "minswap",
             "url": "https://minswap.org/aggregator",
-            "name": "Minswap",
+            "name": "Agg - Minswap",
             "iFrame": false
         },
         {
             "id": "sundaeswap",
             "url": "https://app.sundae.fi/exchange?given=ada.lovelace",
-            "name": "SundaeSwap",
+            "name": "Dex - SundaeSwap",
             "iFrame": false
         },
         {
             "id": "defillama",
             "url": "https://swap.defillama.com/",
-            "name": "DefiLlama",
+            "name": "Agg - DefiLlama",
             "iFrame": true
         },
         {
             "id": "9x",
             "url": "https://9x.9mm.pro/",
-            "name": "9X",
+            "name": "Agg - 9X",
             "iFrame": true
         },
         {
             "id": "awizard-caster",
             "url": "https://cast.awizard.dev/",
-            "name": "aWizard Caster",
+            "name": "Agg - aWizard Caster",
             "iFrame": true
         },
         {
             "id": "cow-swap",
             "url": "https://swap.cow.fi/",
-            "name": "CoW Swap",
+            "name": "Agg - CoW Swap",
             "iFrame": true
         },
         {
             "id": "matcha",
             "url": "https://matcha.xyz/",
-            "name": "Matcha",
+            "name": "Agg - Matcha",
             "iFrame": false
         },
         {
             "id": "kyberswap",
             "url": "https://kyberswap.com/swap",
-            "name": "KyberSwap",
+            "name": "Agg - KyberSwap",
             "iFrame": false
         },
         {
             "id": "9mm-dex",
             "url": "https://dex.9mm.pro/swap",
-            "name": "9mm DEX",
+            "name": "Dex - 9mm",
             "iFrame": false
         },
         {
             "id": "aerodrome",
             "url": "https://aerodrome.finance/",
-            "name": "Aerodrome",
+            "name": "Dex - Aerodrome",
             "iFrame": true
         },
         {
             "id": "uniswap",
             "url": "https://app.uniswap.org/swap",
-            "name": "Uniswap",
+            "name": "Dex - Uniswap",
             "iFrame": true
         },
         {
             "id": "pancakeswap",
             "url": "https://pancakeswap.finance/",
-            "name": "PancakeSwap",
+            "name": "Dex - PancakeSwap",
             "iFrame": true
         },
         {
             "id": "piteas",
             "url": "https://app.piteas.io/",
-            "name": "Piteas",
+            "name": "Agg - Piteas",
             "iFrame": true
         },
         {
             "id": "pulseswap",
             "url": "https://pulseswap.io/",
-            "name": "PulseSwap",
+            "name": "Agg - PulseSwap",
             "iFrame": true
         },
         {
             "id": "pulsex",
             "url": "https://pulsex.hexoacoin.com/#/",
-            "name": "PulseX",
+            "name": "Dex - PulseX",
             "iFrame": true
         },
         {
             "id": "swap-win",
             "url": "https://www.swap.win/",
-            "name": "Swap.Win",
+            "name": "Agg - Swap.Win",
             "iFrame": true
         },
         {
             "id": "tide",
             "url": "https://beta.0xtide.com/",
-            "name": "Tide",
+            "name": "Dex - Tide",
             "iFrame": true
         },
         {
             "id": "switch-win",
             "url": "https://switch.win/",
-            "name": "Switch.Win",
+            "name": "Agg - Switch.Win",
             "iFrame": true
         },
         {
             "id": "shadow",
             "url": "https://www.shadow.so/trade",
-            "name": "Shadow",
+            "name": "Dex - Shadow",
             "iFrame": false
         },
         {
             "id": "dexie",
             "url": "https://dexie.space/swap",
-            "name": "Dexie",
+            "name": "Agg - Dexie",
             "iFrame": true
         },
         {
             "id": "tibetswap",
             "url": "https://v2.tibetswap.io/",
-            "name": "TibetSwap",
+            "name": "Dex - TibetSwap",
             "iFrame": true
         },
         {
             "id": "pussyswap",
             "url": "https://pussyswap.pro/",
-            "name": "PussySwap",
+            "name": "Agg - PussySwap",
             "iFrame": true
         },
         {
             "id": "awizard-caster-wxch",
             "url": "https://cast.awizard.dev/",
-            "name": "aWizard Caster - wXCH on Base",
+            "name": "Agg - aWizard Caster - wXCH on Base",
             "iFrame": true
         },
         {
             "id": "defillama-wxch",
             "url": "https://swap.defillama.com/",
-            "name": "DefiLlama - wXCH on Base",
+            "name": "Agg - DefiLlama - wXCH on Base",
             "iFrame": true
         },
         {
             "id": "9x-wxch",
             "url": "https://9x.9mm.pro/",
-            "name": "9X - wXCH on Base",
+            "name": "Agg - 9X - wXCH on Base",
             "iFrame": true
         }
     ],

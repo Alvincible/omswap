@@ -1,4 +1,20 @@
 {
-  "websites": ["piteas", "9x", "pulseswap", "9mm-dex", "pulsex", "swap-win", "tide", "switch-win"],
-  "bridges": ["pulsechain-bridge", "libertyswap", "empseal", "hyperlane", "pulseln", "changenow"]
+  "websites": [
+    "piteas",
+    "9x",
+    "swap-win",
+    "pulseswap",
+    "switch-win",
+    "9mm-dex",
+    "pulsex",
+    "tide"
+  ],
+  "bridges": [
+    "pulsechain-bridge",
+    "libertyswap",
+    "empseal",
+    "hyperlane",
+    "pulseln",
+    "changenow"
+  ]
 }

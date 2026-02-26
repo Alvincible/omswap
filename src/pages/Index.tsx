@@ -231,7 +231,7 @@ const Index = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[200px] md:min-w-[300px] p-1 z-50 max-h-[60vh] overflow-y-auto">
-                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">DEXes</div>
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Dexes & Aggregators</div>
                 {availableWebsites.map((website, index) => (
                   <div key={index} className="flex items-center gap-1">
                     <button
@@ -311,7 +311,7 @@ const Index = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-gray-800 border-gray-600 min-w-[200px] md:min-w-[300px] p-1 z-50 max-h-[60vh] overflow-y-auto">
-                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">DEXes</div>
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Dexes & Aggregators</div>
                 {availableWebsites.map((website, index) => (
                   <div key={index} className="flex items-center gap-1">
                     <button
@@ -329,7 +329,7 @@ const Index = () => {
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
-                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Bridges</div>
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Bridges & Cross-Chain Swaps</div>
                 {availableBridges.map((bridge, index) => (
                   <div key={`bridge-${index}`} className="flex items-center gap-1">
                     <button
