@@ -14,6 +14,7 @@ import bscData from "@/data/BSC.json";
 import plsData from "@/data/PLS.json";
 import sData from "@/data/S.json";
 import adaData from "@/data/ADA.json";
+import croData from "@/data/CRO.json";
 
 // Import chain logos
 import xchLogo from "@/assets/chains/xch.png";
