@@ -166,7 +166,7 @@
             "id": "openocean",
             "url": "https://app.openocean.finance/swap/cronos",
             "name": "Agg - Open Ocean",
-            "iFrame": true
+            "iFrame": false
         },
         {
             "id": "vvs",
