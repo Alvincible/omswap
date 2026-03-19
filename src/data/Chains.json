@@ -6,6 +6,7 @@
     { "id": "bsc", "name": "BSC", "color": "yellow" },
     { "id": "pls", "name": "PLS", "color": "purple" },
     { "id": "s", "name": "S", "color": "orange" },
-    { "id": "ada", "name": "ADA", "color": "cardano" }
+    { "id": "ada", "name": "ADA", "color": "cardano" },
+    { "id": "cro", "name": "CRO", "color": "cronos" }
   ]
 }
