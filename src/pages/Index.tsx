@@ -102,6 +102,7 @@ const chainBridges: Record<string, Website[]> = {
   PLS: resolveBridgeIds(plsData.bridges || []),
   S: resolveBridgeIds(sData.bridges || []),
   ADA: resolveBridgeIds(adaData.bridges || []),
+  CRO: resolveBridgeIds(croData.bridges || []),
 };
 
 // Create a chain lookup map for O(1) access
