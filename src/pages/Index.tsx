@@ -24,6 +24,7 @@ import bscLogo from "@/assets/chains/bsc.png";
 import plsLogo from "@/assets/chains/pls.png";
 import sLogo from "@/assets/chains/s.png";
 import adaLogo from "@/assets/chains/ada.png";
+import croLogo from "@/assets/chains/cro.png";
 
 const chainLogos: Record<string, string> = {
   XCH: xchLogo,
