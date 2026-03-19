@@ -91,6 +91,7 @@ const chainWebsites: Record<string, Website[]> = {
   PLS: resolveWebsiteIds(plsData.websites),
   S: resolveWebsiteIds(sData.websites),
   ADA: resolveWebsiteIds(adaData.websites),
+  CRO: resolveWebsiteIds(croData.websites),
 };
 
 const chainBridges: Record<string, Website[]> = {
