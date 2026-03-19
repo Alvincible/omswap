@@ -34,6 +34,7 @@ const chainLogos: Record<string, string> = {
   PLS: plsLogo,
   S: sLogo,
   ADA: adaLogo,
+  CRO: croLogo,
 };
 
 interface Website {
