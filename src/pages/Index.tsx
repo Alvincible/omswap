@@ -14,6 +14,7 @@ import bscData from "@/data/BSC.json";
 import plsData from "@/data/PLS.json";
 import sData from "@/data/S.json";
 import adaData from "@/data/ADA.json";
+import croData from "@/data/CRO.json";
 
 // Import chain logos
 import xchLogo from "@/assets/chains/xch.png";
@@ -23,6 +24,7 @@ import bscLogo from "@/assets/chains/bsc.png";
 import plsLogo from "@/assets/chains/pls.png";
 import sLogo from "@/assets/chains/s.png";
 import adaLogo from "@/assets/chains/ada.png";
+import croLogo from "@/assets/chains/cro.png";
 
 const chainLogos: Record<string, string> = {
   XCH: xchLogo,
@@ -32,6 +34,7 @@ const chainLogos: Record<string, string> = {
   PLS: plsLogo,
   S: sLogo,
   ADA: adaLogo,
+  CRO: croLogo,
 };
 
 interface Website {
@@ -88,6 +91,7 @@ const chainWebsites: Record<string, Website[]> = {
   PLS: resolveWebsiteIds(plsData.websites),
   S: resolveWebsiteIds(sData.websites),
   ADA: resolveWebsiteIds(adaData.websites),
+  CRO: resolveWebsiteIds(croData.websites),
 };
 
 const chainBridges: Record<string, Website[]> = {
@@ -98,6 +102,7 @@ const chainBridges: Record<string, Website[]> = {
   PLS: resolveBridgeIds(plsData.bridges || []),
   S: resolveBridgeIds(sData.bridges || []),
   ADA: resolveBridgeIds(adaData.bridges || []),
+  CRO: resolveBridgeIds(croData.bridges || []),
 };
 
 // Create a chain lookup map for O(1) access
@@ -115,6 +120,7 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
   purple: { border: "border-purple-500", bg: "bg-purple-600", hover: "hover:bg-purple-500", text: "text-black" },
   orange: { border: "border-orange-500", bg: "bg-orange-500", hover: "hover:bg-orange-400", text: "text-black" },
   cardano: { border: "border-blue-600", bg: "bg-blue-700", hover: "hover:bg-blue-600", text: "text-white" },
+  cronos: { border: "border-blue-800", bg: "bg-blue-900", hover: "hover:bg-blue-800", text: "text-white" },
 };
 
 const Index = () => {

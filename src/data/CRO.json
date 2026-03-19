@@ -1,0 +1,10 @@
+{
+  "websites": [
+    "Wolfswap",
+    "vvs",
+    "openocean"
+  ],
+  "bridges": [
+    "cronos-chain-bridge"
+  ]
+}

@@ -155,6 +155,24 @@
             "url": "https://9x.9mm.pro/",
             "name": "Agg - 9X - wXCH on Base",
             "iFrame": true
+        },
+        {
+            "id": "Wolfswap",
+            "url": "https://wolfswap.app/swap",
+            "name": "Agg - Wolfswap",
+            "iFrame": true
+        },
+        {
+            "id": "openocean",
+            "url": "https://app.openocean.finance/swap/cronos",
+            "name": "Agg - Open Ocean",
+            "iFrame": false
+        },
+        {
+            "id": "vvs",
+            "url": "https://vvs.finance/trade/swap",
+            "name": "Dex - VVS",
+            "iFrame": true
         }
     ],
     "bridges": [
@@ -246,6 +264,12 @@
             "id": "awizard-emoji-bridge",
             "url": "https://warp.awizard.dev/bridge",
             "name": "aWizard Emoji Bridge",
+            "iFrame": true
+        },
+        {
+            "id": "cronos-chain-bridge",
+            "url": "https://cronos.org/bridge",
+            "name": "Cronos Chain Bridge (official bridge)",
             "iFrame": true
         }
     ]
