@@ -270,7 +270,7 @@
             "id": "cronos-chain-bridge",
             "url": "https://cronos.org/bridge",
             "name": "Cronos Chain Bridge (official bridge)",
-            "iFrame": false
+            "iFrame": true
         }
     ]
 }
