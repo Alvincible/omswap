@@ -120,6 +120,7 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
   purple: { border: "border-purple-500", bg: "bg-purple-600", hover: "hover:bg-purple-500", text: "text-black" },
   orange: { border: "border-orange-500", bg: "bg-orange-500", hover: "hover:bg-orange-400", text: "text-black" },
   cardano: { border: "border-blue-600", bg: "bg-blue-700", hover: "hover:bg-blue-600", text: "text-white" },
+  cronos: { border: "border-blue-800", bg: "bg-blue-900", hover: "hover:bg-blue-800", text: "text-white" },
 };
 
 const Index = () => {

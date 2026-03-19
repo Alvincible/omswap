@@ -265,6 +265,12 @@
             "url": "https://warp.awizard.dev/bridge",
             "name": "aWizard Emoji Bridge",
             "iFrame": true
+        },
+        {
+            "id": "cronos-chain-bridge",
+            "url": "https://cronos.org/bridge",
+            "name": "Cronos Chain Bridge (official bridge)",
+            "iFrame": false
         }
     ]
 }
