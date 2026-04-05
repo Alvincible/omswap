@@ -222,7 +222,7 @@
             "id": "pulsechain-bridge",
             "url": "https://bridge.pulsechain.com/",
             "name": "Official PulseChain Bridge",
-            "iFrame": true
+            "iFrame": false
         },
         {
             "id": "libertyswap",
