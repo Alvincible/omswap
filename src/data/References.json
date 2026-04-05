@@ -240,7 +240,7 @@
             "id": "hyperlane",
             "url": "https://nexus.hyperlane.xyz/",
             "name": "Hyperlane",
-            "iFrame": true
+            "iFrame": false
         },
         {
             "id": "pulseln",
