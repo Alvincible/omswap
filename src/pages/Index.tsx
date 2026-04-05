@@ -255,7 +255,7 @@ const Index = () => {
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
-                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Bridges</div>
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Bridges & Cross-Chain Swaps</div>
                 {availableBridges.map((bridge, index) => (
                   <div key={`bridge-${index}`} className="flex items-center gap-1">
                     <button
