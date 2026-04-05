@@ -210,7 +210,7 @@
             "id": "rhino",
             "url": "https://app.rhino.fi/bridge",
             "name": "Rhino",
-            "iFrame": true
+            "iFrame": false
         },
         {
             "id": "bnb-chain-bridge",
