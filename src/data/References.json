@@ -210,7 +210,7 @@
             "id": "rhino",
             "url": "https://app.rhino.fi/bridge",
             "name": "Rhino",
-            "iFrame": true
+            "iFrame": false
         },
         {
             "id": "bnb-chain-bridge",
@@ -222,7 +222,7 @@
             "id": "pulsechain-bridge",
             "url": "https://bridge.pulsechain.com/",
             "name": "Official PulseChain Bridge",
-            "iFrame": true
+            "iFrame": false
         },
         {
             "id": "libertyswap",
@@ -240,7 +240,7 @@
             "id": "hyperlane",
             "url": "https://nexus.hyperlane.xyz/",
             "name": "Hyperlane",
-            "iFrame": true
+            "iFrame": false
         },
         {
             "id": "pulseln",
