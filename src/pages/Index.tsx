@@ -59,6 +59,7 @@ interface Reference {
 // Create lookup maps for references
 const websiteMap = new Map<string, Reference>();
 const bridgeMap = new Map<string, Reference>();
+const toolMap = new Map<string, Reference>();
 
 referencesData.websites.forEach((ref) => {
   websiteMap.set(ref.id, ref);
@@ -66,6 +67,10 @@ referencesData.websites.forEach((ref) => {
 
 referencesData.bridges.forEach((ref) => {
   bridgeMap.set(ref.id, ref);
+});
+
+(referencesData.tools || []).forEach((ref) => {
+  toolMap.set(ref.id, ref);
 });
 
 // Helper function to resolve IDs to Website objects
@@ -83,6 +88,19 @@ const resolveBridgeIds = (ids: string[]): Website[] => {
     .map((ref) => ({ url: ref.url, name: ref.name, iFrame: ref.iFrame }));
 };
 
+const resolveToolIds = (ids: string[]): Website[] => {
+  return ids
+    .map((id) => toolMap.get(id))
+    .filter((ref): ref is Reference => ref !== undefined)
+    .map((ref) => ({ url: ref.url, name: ref.name, iFrame: ref.iFrame }));
+};
+
+const getCategoryIds = (data: unknown, category: string): string[] => {
+  if (!data || typeof data !== "object") return [];
+  const value = (data as Record<string, unknown>)[category];
+  return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
+};
+
 const chainWebsites: Record<string, Website[]> = {
   XCH: resolveWebsiteIds(xchData.websites),
   ETH: resolveWebsiteIds(ethData.websites),
@@ -95,14 +113,25 @@ const chainWebsites: Record<string, Website[]> = {
 };
 
 const chainBridges: Record<string, Website[]> = {
-  XCH: resolveBridgeIds(xchData.bridges || []),
-  ETH: resolveBridgeIds(ethData.bridges || []),
-  BASE: resolveBridgeIds(baseData.bridges || []),
-  BSC: resolveBridgeIds(bscData.bridges || []),
-  PLS: resolveBridgeIds(plsData.bridges || []),
-  S: resolveBridgeIds(sData.bridges || []),
-  ADA: resolveBridgeIds(adaData.bridges || []),
-  CRO: resolveBridgeIds(croData.bridges || []),
+  XCH: resolveBridgeIds(getCategoryIds(xchData, "bridges")),
+  ETH: resolveBridgeIds(getCategoryIds(ethData, "bridges")),
+  BASE: resolveBridgeIds(getCategoryIds(baseData, "bridges")),
+  BSC: resolveBridgeIds(getCategoryIds(bscData, "bridges")),
+  PLS: resolveBridgeIds(getCategoryIds(plsData, "bridges")),
+  S: resolveBridgeIds(getCategoryIds(sData, "bridges")),
+  ADA: resolveBridgeIds(getCategoryIds(adaData, "bridges")),
+  CRO: resolveBridgeIds(getCategoryIds(croData, "bridges")),
+};
+
+const chainTools: Record<string, Website[]> = {
+  XCH: resolveToolIds(getCategoryIds(xchData, "tools")),
+  ETH: resolveToolIds(getCategoryIds(ethData, "tools")),
+  BASE: resolveToolIds(getCategoryIds(baseData, "tools")),
+  BSC: resolveToolIds(getCategoryIds(bscData, "tools")),
+  PLS: resolveToolIds(getCategoryIds(plsData, "tools")),
+  S: resolveToolIds(getCategoryIds(sData, "tools")),
+  ADA: resolveToolIds(getCategoryIds(adaData, "tools")),
+  CRO: resolveToolIds(getCategoryIds(croData, "tools")),
 };
 
 // Create a chain lookup map for O(1) access
@@ -131,6 +160,7 @@ const Index = () => {
   const [selectedColor, setSelectedColor] = useState<string>("green");
   const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["XCH"]);
   const [availableBridges, setAvailableBridges] = useState<Website[]>(chainBridges["XCH"]);
+  const [availableTools, setAvailableTools] = useState<Website[]>(chainTools["XCH"]);
 
   // Create URL-to-Website maps for O(1) lookups
   const websiteUrlMap = useMemo(() => {
@@ -149,22 +179,34 @@ const Index = () => {
     return map;
   }, [availableBridges]);
 
+  const toolUrlMap = useMemo(() => {
+    const map = new Map<string, Website>();
+    availableTools.forEach((tool) => {
+      map.set(tool.url, tool);
+    });
+    return map;
+  }, [availableTools]);
+
   // Memoize embeddable checks
   const leftEmbeddable = useMemo(() => {
     const website = websiteUrlMap.get(leftUrl);
     if (website) return website.iFrame;
     const bridge = bridgeUrlMap.get(leftUrl);
     if (bridge) return bridge.iFrame;
+    const tool = toolUrlMap.get(leftUrl);
+    if (tool) return tool.iFrame;
     return true;
-  }, [leftUrl, websiteUrlMap, bridgeUrlMap]);
+  }, [leftUrl, websiteUrlMap, bridgeUrlMap, toolUrlMap]);
 
   const rightEmbeddable = useMemo(() => {
     const website = websiteUrlMap.get(rightUrl);
     if (website) return website.iFrame;
     const bridge = bridgeUrlMap.get(rightUrl);
     if (bridge) return bridge.iFrame;
+    const tool = toolUrlMap.get(rightUrl);
+    if (tool) return tool.iFrame;
     return true;
-  }, [rightUrl, websiteUrlMap, bridgeUrlMap]);
+  }, [rightUrl, websiteUrlMap, bridgeUrlMap, toolUrlMap]);
 
   // Get current color classes based on selected chain
   const colors = chainColorClasses[selectedColor] || chainColorClasses.green;
@@ -183,6 +225,7 @@ const Index = () => {
       setRightUrl(secondWebsite);
       setAvailableWebsites(chainWebsites[chain]);
       setAvailableBridges(chainBridges[chain] || []);
+      setAvailableTools(chainTools[chain] || []);
     }
   }, []);
 
@@ -199,8 +242,10 @@ const Index = () => {
     if (website) return website.name;
     const bridge = bridgeUrlMap.get(url);
     if (bridge) return bridge.name;
+    const tool = toolUrlMap.get(url);
+    if (tool) return tool.name;
     return url;
-  }, [websiteUrlMap, bridgeUrlMap]);
+  }, [websiteUrlMap, bridgeUrlMap, toolUrlMap]);
 
   const OpenInNewTabButton = ({ url, name }: { url: string; name: string }) => (
     <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900">
@@ -266,6 +311,24 @@ const Index = () => {
                     </button>
                     <button
                       onClick={() => window.open(bridge.url, '_blank')}
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+                <div className="my-1 border-t border-gray-600" />
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Tools and Community Sites</div>
+                {availableTools.map((tool, index) => (
+                  <div key={`tool-${index}`} className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleUrlChange(tool.url, 'left')}
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
+                    >
+                      {tool.name}
+                    </button>
+                    <button
+                      onClick={() => window.open(tool.url, '_blank')}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
@@ -346,6 +409,24 @@ const Index = () => {
                     </button>
                     <button
                       onClick={() => window.open(bridge.url, '_blank')}
+                      className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+                <div className="my-1 border-t border-gray-600" />
+                <div className="px-2 py-1 text-xs text-gray-400 font-semibold">Tools and Community Sites</div>
+                {availableTools.map((tool, index) => (
+                  <div key={`tool-${index}`} className="flex items-center gap-1">
+                    <button
+                      onClick={() => handleUrlChange(tool.url, 'right')}
+                      className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
+                    >
+                      {tool.name}
+                    </button>
+                    <button
+                      onClick={() => window.open(tool.url, '_blank')}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />

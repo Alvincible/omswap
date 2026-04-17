@@ -11,5 +11,8 @@
     "warp-green",
     "awizard-emoji-bridge",
     "changenow"
+  ],
+  "tools": [
+    "caster101"
   ]
 }
