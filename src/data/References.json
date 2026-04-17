@@ -272,5 +272,13 @@
             "name": "Cronos Chain Bridge (official bridge)",
             "iFrame": true
         }
+    ],
+    "tools": [
+        {
+            "id": "caster101",
+            "url": "https://www.caster101.xyz//",
+            "name": "Caster 101",
+            "iFrame": true
+        }
     ]
 }
