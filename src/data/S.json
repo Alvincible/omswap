@@ -1,4 +1,5 @@
 {
   "websites": ["defillama", "9x", "shadow", "9mm-dex"],
-  "bridges": ["sonic-gateway", "portal-bridge", "rhino"]
+  "bridges": ["sonic-gateway", "portal-bridge", "rhino"],
+  "tools": ["pulpmarket"]
 }

@@ -1,4 +1,5 @@
 {
   "websites": ["defillama", "cow-swap", "matcha", "kyberswap", "uniswap", "pancakeswap", "9mm-dex"],
-  "bridges": ["bnb-chain-bridge", "portal-bridge", "stargate-finance"]
+  "bridges": ["bnb-chain-bridge", "portal-bridge", "stargate-finance"],
+  "tools": ["pulpmarket"]
 }
