@@ -279,6 +279,12 @@
             "url": "https://www.caster101.xyz//",
             "name": "Caster 101",
             "iFrame": true
+        },
+        {
+            "id": "xch-terminal",
+            "url": "https://xch.9mm.pro/",
+            "name": "XCH Terminal - 9mm Pro",
+            "iFrame": true
         }
     ]
 }

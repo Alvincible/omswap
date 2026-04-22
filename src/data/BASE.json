@@ -14,5 +14,8 @@
     "portal-bridge",
     "stargate-finance",
     "rhino"
+  ],
+  "tools": [
+    "xch-terminal"
   ]
 }
