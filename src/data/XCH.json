@@ -13,6 +13,7 @@
     "changenow"
   ],
   "tools": [
-    "caster101"
+    "caster101",
+    "xch-terminal"
   ]
 }

@@ -16,5 +16,8 @@
     "hyperlane",
     "pulseln",
     "changenow"
+  ],
+  "tools": [
+    "pulpmarket"
   ]
 }

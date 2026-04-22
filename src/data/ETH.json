@@ -1,4 +1,5 @@
 {
   "websites": ["defillama", "cow-swap", "matcha", "kyberswap", "uniswap", "pancakeswap", "9mm-dex"],
-  "bridges": ["portal-bridge", "stargate-finance", "rhino"]
+  "bridges": ["portal-bridge", "stargate-finance", "rhino"],
+  "tools": ["xch-terminal", "pulpmarket"]
 }
