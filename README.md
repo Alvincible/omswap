@@ -1,132 +1,142 @@
 # OMSwap 🔄
 
-A powerful side-by-side DEX (Decentralized Exchange) and bridge comparison tool that allows you to compare multiple trading platforms and bridges across different blockchain networks in a single view.
+OMSwap is a side-by-side DeFi comparison app for discovering and opening DEXes, aggregators, bridges, and ecosystem tools by chain.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-omswap.vercel.app-blue?style=flat-square)](https://omswap.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-omswap.app-blue?style=flat-square)](https://omswap.app/)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
 ## ✨ Features
 
-- **Side-by-Side Comparison**: View two DEXes or bridges simultaneously in a split-screen interface
-- **Multi-Chain Support**: Switch between 7+ blockchain networks seamlessly
-- **Comprehensive DEX Directory**: Access to multiple decentralized exchanges per chain
-- **Bridge Integration**: Compare cross-chain bridges for asset transfers
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
-- **Smart Embedding**: Automatically detects and handles sites that don't support iframe embedding
-- **Chain-Themed UI**: Dynamic color themes based on selected blockchain
+- **Split-screen comparison**: Open two destinations at once for quick side-by-side checks
+- **Multi-chain support**: Chain-specific lists of DEXes, bridges, and tools
+- **Smart iframe handling**: Uses per-site `iFrame` metadata to decide embed vs. open-in-new-tab
+- **Unified reference registry**: Shared canonical references mapped into per-chain menus
+- **Chain-themed UI**: Dynamic branding colors and logos based on active chain
+- **Mobile-friendly layout**: Panels stack on small screens
 
 ## 🚀 Live Demo
 
-Visit the live application: **[omswap.vercel.app](https://omswap.vercel.app/)**
+Use the app at **[omswap.app](https://omswap.app/)**.
 
 ## 🛠️ Tech Stack
 
-- **Framework**: React 18 with TypeScript
+- **Framework**: React 18 + TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
-- **UI Components**: shadcn-ui (Radix UI primitives)
-- **Icons**: Lucide React
+- **UI**: shadcn-ui + Radix primitives
 - **Deployment**: Vercel
 
-## 📦 Installation
+## 📦 Local Development
 
 ### Prerequisites
 
-- Node.js 18+ and npm (or yarn/pnpm)
+- Node.js 18+
+- npm (or yarn/pnpm)
 
 ### Setup
 
-1. Clone the repository:
+1. Clone:
 ```bash
-git clone https://github.com/yourusername/omswap.git
+git clone https://github.com/Alvincible/omswap.git
 cd omswap
 ```
-
 2. Install dependencies:
 ```bash
 npm install
 ```
-
-3. Start the development server:
+3. Start development server:
 ```bash
 npm run dev
 ```
+4. Open `http://localhost:5173`
 
-4. Open your browser and navigate to `http://localhost:5173`
+## 🏗️ Production Build
 
-## 🏗️ Build for Production
-
+Build:
 ```bash
 npm run build
 ```
 
-The production build will be created in the `dist` directory.
-
-Preview the production build locally:
+Preview:
 ```bash
 npm run preview
 ```
 
 ## 🌐 Supported Chains
 
-- **XCH** (Chia Network)
-- **ETH** (Ethereum)
-- **BASE** (Base Layer 2)
-- **BSC** (Binance Smart Chain)
-- **PLS** (PulseChain)
-- **S** (S Network)
-- **ADA** (Cardano)
+Current chain list is driven by `src/data/Chains.json`:
 
-Each chain includes multiple DEXes and bridge options that can be compared side-by-side.
+- **XCH** (Chia)
+- **BASE** (Base)
+- **PLS** (PulseChain)
+- **ETH** (Ethereum)
+- **BSC** (BNB Smart Chain)
+- **S** (Sonic)
+- **ADA** (Cardano)
+- **CRO** (Cronos)
 
 ## 📖 Usage
 
-1. **Select a Chain**: Use the chain selector in the center of the toolbar to choose your blockchain network
-2. **Choose Left Panel**: Click the dropdown on the left to select a DEX or bridge
-3. **Choose Right Panel**: Click the dropdown on the right to select another DEX or bridge for comparison
-4. **Compare**: View both platforms side-by-side to compare rates, interfaces, and features
-5. **Open in New Tab**: For sites that don't support embedding, click the "Open in new tab" button
+1. Select a chain from the center dropdown.
+2. Pick destinations for the left and right panels.
+3. Compare DEXes/aggregators, bridges, or tools.
+4. If a site blocks iframe embedding, use the generated **Open in new tab** button.
 
-## 🎨 Features in Detail
+## 🗂️ Data Model and Infrastructure
 
-### Smart Embedding Detection
-The app automatically detects which sites support iframe embedding. For sites that block embedding (like KyberSwap, Matcha, etc.), it provides a convenient button to open them in a new tab.
+OMSwap is a static, data-driven frontend. The comparison menus are composed from JSON registries:
 
-### Chain-Specific Theming
-Each blockchain network has its own color theme that dynamically updates the UI borders and accents for a cohesive experience.
+- `src/data/References.json`: canonical objects for:
+  - `websites` (DEXes/aggregators)
+  - `bridges` (cross-chain routes)
+  - `tools` (ecosystem/community resources)
+- `src/data/<CHAIN>.json`: per-chain arrays of reference IDs (for example `XCH.json`, `BASE.json`, `CRO.json`)
+- `src/data/Chains.json`: chain metadata (`id`, `name`, `color`)
+- `src/pages/Index.tsx`: resolves IDs to full objects and renders chain-specific dropdowns
 
-### Mobile Responsive
-The interface adapts to mobile devices by stacking the panels vertically instead of side-by-side.
+Each reference object includes:
+
+- `id`: unique key
+- `url`: destination URL
+- `name`: display label
+- `iFrame`: whether embedding is allowed
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you'd like to contribute:
+Contributions are welcome.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Fork and branch.
+2. Make your changes.
+3. Run lint/build checks.
+4. Open a PR.
 
-### Adding New Chains or DEXes
+### Updating references (DEXes, bridges, tools)
 
-To add support for a new chain or DEX:
+1. Add or update canonical entries in `src/data/References.json`.
+2. Add the corresponding `id` to one or more chain files in `src/data/<CHAIN>.json`.
+3. If adding a new URL, verify iframe support with:
+```bash
+node .cursor/skills/omswap-reference-registry/scripts/check-iframe-support.mjs "<url>"
+```
+4. Set `iFrame` based on the result (fallback to `false` if uncertain).
+5. Run:
+```bash
+npm run lint
+```
 
-1. Add chain data to `src/data/Chains.json`
-2. Create a new JSON file in `src/data/` with the chain's DEXes and bridges
-3. Add the chain logo to `src/assets/chains/`
-4. Update the imports in `src/pages/Index.tsx`
+### Adding a new chain
 
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
+1. Add chain metadata to `src/data/Chains.json`.
+2. Create `src/data/<CHAIN>.json` with `websites`, `bridges`, and `tools` arrays.
+3. Add a chain logo in `src/assets/chains/<id>.png`.
+4. Wire the new chain in `src/pages/Index.tsx` (imports, logos, and per-chain maps).
 
 ## 🔗 Links
 
-- **Live Application**: [omswap.vercel.app](https://omswap.vercel.app/)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/omswap/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/omswap/discussions)
+- Live Application: [omswap.app](https://omswap.app/)
+- Repository: [github.com/Alvincible/omswap](https://github.com/Alvincible/omswap)
+- Issues: [GitHub Issues](https://github.com/Alvincible/omswap/issues)
 
----
+## 📝 License
 
-Made with ❤️ for the DeFi community
+Released under the [MIT License](LICENSE).
