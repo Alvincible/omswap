@@ -118,7 +118,7 @@
             "id": "shadow",
             "url": "https://www.shadow.so/trade",
             "name": "Dex - Shadow",
-            "iFrame": false
+            "iFrame": true
         },
         {
             "id": "dexie",
@@ -186,7 +186,7 @@
             "id": "rubic-exchange",
             "url": "https://app.rubic.exchange/",
             "name": "Rubic Exchange",
-            "iFrame": false
+            "iFrame": true
         },
         {
             "id": "midnight-redeem",
