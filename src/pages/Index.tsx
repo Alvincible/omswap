@@ -2,7 +2,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useState, useMemo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ChevronDown, ExternalLink, SplitSquareHorizontal } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import chainsData from "@/data/Chains.json";
 import referencesData from "@/data/References.json";
 
@@ -250,18 +250,17 @@ const Index = () => {
   }, [websiteUrlMap, bridgeUrlMap, toolUrlMap]);
 
   const OpenInNewTabButton = ({ url, name }: { url: string; name: string }) => (
-    <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900">
+    <div className="w-full h-full flex flex-col items-center justify-center gap-3 md:gap-4 bg-gray-900 px-4 py-4 box-border overflow-hidden">
       <div
-        className="bg-gray-400 text-white px-3 py-2 text-sm flex items-center gap-2 cursor-not-allowed select-none rounded"
+        className="bg-gray-400 text-white px-3 py-2 text-sm flex items-center gap-2 cursor-not-allowed select-none rounded max-w-full text-center"
       >
         {name} does not support iFrame
       </div>
-      <Button
-        onClick={() => window.open(url, '_blank')}
-        className={`${colors.bg} ${colors.hover} ${colors.text} px-8 py-6 text-xl flex items-center gap-3`}
-      >
-        <ExternalLink className="h-6 w-6" />
-        Open {name} in new tab
+      <Button asChild className={`${colors.bg} ${colors.hover} ${colors.text} h-auto max-w-full whitespace-normal px-4 py-3 text-base md:px-8 md:py-6 md:text-xl`}>
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          <ExternalLink className="h-5 w-5 md:h-6 md:w-6 shrink-0" />
+          Open {name} in new tab
+        </a>
       </Button>
     </div>
   );
@@ -293,12 +292,16 @@ const Index = () => {
                     >
                       {website.name}
                     </button>
-                    <button
-                      onClick={() => { window.open(website.url, '_blank'); setLeftDropdownOpen(false); }}
+                    <a
+                      href={website.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setLeftDropdownOpen(false)}
+                      aria-label={`Open ${website.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
@@ -311,12 +314,16 @@ const Index = () => {
                     >
                       {bridge.name}
                     </button>
-                    <button
-                      onClick={() => { window.open(bridge.url, '_blank'); setLeftDropdownOpen(false); }}
+                    <a
+                      href={bridge.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setLeftDropdownOpen(false)}
+                      aria-label={`Open ${bridge.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
@@ -329,12 +336,16 @@ const Index = () => {
                     >
                       {tool.name}
                     </button>
-                    <button
-                      onClick={() => { window.open(tool.url, '_blank'); setLeftDropdownOpen(false); }}
+                    <a
+                      href={tool.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setLeftDropdownOpen(false)}
+                      aria-label={`Open ${tool.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
               </DropdownMenuContent>
@@ -391,12 +402,16 @@ const Index = () => {
                     >
                       {website.name}
                     </button>
-                    <button
-                      onClick={() => { window.open(website.url, '_blank'); setRightDropdownOpen(false); }}
+                    <a
+                      href={website.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setRightDropdownOpen(false)}
+                      aria-label={`Open ${website.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
@@ -409,12 +424,16 @@ const Index = () => {
                     >
                       {bridge.name}
                     </button>
-                    <button
-                      onClick={() => { window.open(bridge.url, '_blank'); setRightDropdownOpen(false); }}
+                    <a
+                      href={bridge.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setRightDropdownOpen(false)}
+                      aria-label={`Open ${bridge.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
@@ -427,12 +446,16 @@ const Index = () => {
                     >
                       {tool.name}
                     </button>
-                    <button
-                      onClick={() => { window.open(tool.url, '_blank'); setRightDropdownOpen(false); }}
+                    <a
+                      href={tool.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setRightDropdownOpen(false)}
+                      aria-label={`Open ${tool.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
               </DropdownMenuContent>
