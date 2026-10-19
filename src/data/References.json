@@ -25,10 +25,10 @@
             "iFrame": true
         },
         {
-            "id": "9x",
-            "url": "https://9x.9mm.pro/",
-            "name": "Agg - 9X",
-            "iFrame": true
+            "id": "watergun-agg",
+            "url": "https://swap.watergun.pro/swap",
+            "name": "Agg - Water Gun",
+            "iFrame": false
         },
         {
             "id": "awizard-caster",
@@ -151,10 +151,10 @@
             "iFrame": true
         },
         {
-            "id": "9x-wxch",
-            "url": "https://9x.9mm.pro/",
-            "name": "Agg - 9X - wXCH on Base",
-            "iFrame": true
+            "id": "watergun-agg-wxch",
+            "url": "https://swap.watergun.pro/swap",
+            "name": "Agg - Water Gun - wXCH on Base",
+            "iFrame": false
         },
         {
             "id": "Wolfswap",
