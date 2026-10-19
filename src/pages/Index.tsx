@@ -155,7 +155,7 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
 const Index = () => {
   const isMobile = useIsMobile();
   const [leftUrl, setLeftUrl] = useState("https://dexie.space/swap");
-  const [rightUrl, setRightUrl] = useState("https://v2.tibetswap.io/");
+  const [rightUrl, setRightUrl] = useState("https://forge.awizard.dev/");
   const [selectedChain, setSelectedChain] = useState<string>("XCH");
   const [selectedColor, setSelectedColor] = useState<string>("green");
   const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["XCH"]);

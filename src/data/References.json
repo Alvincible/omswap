@@ -127,10 +127,10 @@
             "iFrame": true
         },
         {
-            "id": "tibetswap",
-            "url": "https://v2.tibetswap.io/",
-            "name": "Dex - TibetSwap",
-            "iFrame": true
+            "id": "forge",
+            "url": "https://forge.awizard.dev/",
+            "name": "Dex - The Forge",
+            "iFrame": false
         },
         {
             "id": "pussyswap",
