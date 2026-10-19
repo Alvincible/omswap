@@ -70,7 +70,7 @@
             "id": "uniswap",
             "url": "https://app.uniswap.org/swap",
             "name": "Dex - Uniswap",
-            "iFrame": true
+            "iFrame": false
         },
         {
             "id": "pancakeswap",
@@ -246,7 +246,7 @@
             "id": "pulseln",
             "url": "https://app.pulseln.com/#",
             "name": "PulseLN",
-            "iFrame": true
+            "iFrame": false
         },
         {
             "id": "sonic-gateway",
