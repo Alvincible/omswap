@@ -168,13 +168,13 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
 
 const Index = () => {
   const isMobile = useIsMobile();
-  const [leftUrl, setLeftUrl] = useState("https://dexie.space/swap");
-  const [rightUrl, setRightUrl] = useState("https://forge.awizard.dev/");
-  const [selectedChain, setSelectedChain] = useState<string>("XCH");
-  const [selectedColor, setSelectedColor] = useState<string>("green");
-  const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["XCH"]);
-  const [availableBridges, setAvailableBridges] = useState<Website[]>(chainBridges["XCH"]);
-  const [availableTools, setAvailableTools] = useState<Website[]>(chainTools["XCH"]);
+  const [leftUrl, setLeftUrl] = useState(chainWebsites["RH"][0].url);
+  const [rightUrl, setRightUrl] = useState(chainWebsites["RH"][1].url);
+  const [selectedChain, setSelectedChain] = useState<string>("RH");
+  const [selectedColor, setSelectedColor] = useState<string>("rh");
+  const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["RH"]);
+  const [availableBridges, setAvailableBridges] = useState<Website[]>(chainBridges["RH"]);
+  const [availableTools, setAvailableTools] = useState<Website[]>(chainTools["RH"]);
   const [leftDropdownOpen, setLeftDropdownOpen] = useState(false);
   const [rightDropdownOpen, setRightDropdownOpen] = useState(false);
 
