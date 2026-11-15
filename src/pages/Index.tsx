@@ -15,6 +15,8 @@ import plsData from "@/data/PLS.json";
 import sData from "@/data/S.json";
 import adaData from "@/data/ADA.json";
 import croData from "@/data/CRO.json";
+import arcData from "@/data/ARC.json";
+import rhData from "@/data/RH.json";
 
 // Import chain logos
 import xchLogo from "@/assets/chains/xch.png";
@@ -25,6 +27,8 @@ import plsLogo from "@/assets/chains/pls.png";
 import sLogo from "@/assets/chains/s.png";
 import adaLogo from "@/assets/chains/ada.png";
 import croLogo from "@/assets/chains/cro.png";
+import arcLogo from "@/assets/chains/arc.png";
+import rhLogo from "@/assets/chains/rh.png";
 
 const chainLogos: Record<string, string> = {
   XCH: xchLogo,
@@ -35,6 +39,8 @@ const chainLogos: Record<string, string> = {
   S: sLogo,
   ADA: adaLogo,
   CRO: croLogo,
+  ARC: arcLogo,
+  RH: rhLogo,
 };
 
 interface Website {
@@ -110,6 +116,8 @@ const chainWebsites: Record<string, Website[]> = {
   S: resolveWebsiteIds(sData.websites),
   ADA: resolveWebsiteIds(adaData.websites),
   CRO: resolveWebsiteIds(croData.websites),
+  ARC: resolveWebsiteIds(arcData.websites),
+  RH: resolveWebsiteIds(rhData.websites),
 };
 
 const chainBridges: Record<string, Website[]> = {
@@ -121,6 +129,8 @@ const chainBridges: Record<string, Website[]> = {
   S: resolveBridgeIds(getCategoryIds(sData, "bridges")),
   ADA: resolveBridgeIds(getCategoryIds(adaData, "bridges")),
   CRO: resolveBridgeIds(getCategoryIds(croData, "bridges")),
+  ARC: resolveBridgeIds(getCategoryIds(arcData, "bridges")),
+  RH: resolveBridgeIds(getCategoryIds(rhData, "bridges")),
 };
 
 const chainTools: Record<string, Website[]> = {
@@ -132,6 +142,8 @@ const chainTools: Record<string, Website[]> = {
   S: resolveToolIds(getCategoryIds(sData, "tools")),
   ADA: resolveToolIds(getCategoryIds(adaData, "tools")),
   CRO: resolveToolIds(getCategoryIds(croData, "tools")),
+  ARC: resolveToolIds(getCategoryIds(arcData, "tools")),
+  RH: resolveToolIds(getCategoryIds(rhData, "tools")),
 };
 
 // Create a chain lookup map for O(1) access
@@ -150,17 +162,19 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
   orange: { border: "border-orange-500", bg: "bg-orange-500", hover: "hover:bg-orange-400", text: "text-black" },
   cardano: { border: "border-blue-600", bg: "bg-blue-700", hover: "hover:bg-blue-600", text: "text-white" },
   cronos: { border: "border-blue-800", bg: "bg-blue-900", hover: "hover:bg-blue-800", text: "text-white" },
+  arc: { border: "border-slate-700", bg: "bg-slate-900", hover: "hover:bg-slate-800", text: "text-white" },
+  rh: { border: "border-lime-400", bg: "bg-lime-400", hover: "hover:bg-lime-300", text: "text-black" },
 };
 
 const Index = () => {
   const isMobile = useIsMobile();
-  const [leftUrl, setLeftUrl] = useState("https://dexie.space/swap");
-  const [rightUrl, setRightUrl] = useState("https://forge.awizard.dev/");
-  const [selectedChain, setSelectedChain] = useState<string>("XCH");
-  const [selectedColor, setSelectedColor] = useState<string>("green");
-  const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["XCH"]);
-  const [availableBridges, setAvailableBridges] = useState<Website[]>(chainBridges["XCH"]);
-  const [availableTools, setAvailableTools] = useState<Website[]>(chainTools["XCH"]);
+  const [leftUrl, setLeftUrl] = useState(chainWebsites["RH"][0].url);
+  const [rightUrl, setRightUrl] = useState(chainWebsites["RH"][1].url);
+  const [selectedChain, setSelectedChain] = useState<string>("RH");
+  const [selectedColor, setSelectedColor] = useState<string>("rh");
+  const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["RH"]);
+  const [availableBridges, setAvailableBridges] = useState<Website[]>(chainBridges["RH"]);
+  const [availableTools, setAvailableTools] = useState<Website[]>(chainTools["RH"]);
   const [leftDropdownOpen, setLeftDropdownOpen] = useState(false);
   const [rightDropdownOpen, setRightDropdownOpen] = useState(false);
 

@@ -1,12 +1,54 @@
 {
   "chains": [
-    { "id": "xch", "name": "XCH", "color": "green" },
-    { "id": "base", "name": "BASE", "color": "blue" },
-    { "id": "pls", "name": "PLS", "color": "purple" },
-    { "id": "eth", "name": "ETH", "color": "slate" },
-    { "id": "bsc", "name": "BSC", "color": "yellow" },
-    { "id": "s", "name": "S", "color": "orange" },
-    { "id": "ada", "name": "ADA", "color": "cardano" },
-    { "id": "cro", "name": "CRO", "color": "cronos" }
+    {
+      "id": "rh",
+      "name": "RH",
+      "color": "rh"
+    },
+    {
+      "id": "base",
+      "name": "BASE",
+      "color": "blue"
+    },
+    {
+      "id": "pls",
+      "name": "PLS",
+      "color": "purple"
+    },
+    {
+      "id": "eth",
+      "name": "ETH",
+      "color": "slate"
+    },
+    {
+      "id": "bsc",
+      "name": "BSC",
+      "color": "yellow"
+    },
+    {
+      "id": "s",
+      "name": "S",
+      "color": "orange"
+    },
+    {
+      "id": "arc",
+      "name": "ARC",
+      "color": "arc"
+    },
+    {
+      "id": "ada",
+      "name": "ADA",
+      "color": "cardano"
+    },
+    {
+      "id": "cro",
+      "name": "CRO",
+      "color": "cronos"
+    },
+    {
+      "id": "xch",
+      "name": "XCH",
+      "color": "green"
+    }
   ]
 }
