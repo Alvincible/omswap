@@ -31,6 +31,12 @@
             "iFrame": false
         },
         {
+            "id": "watergun-dex",
+            "url": "https://dex.watergun.pro/swap",
+            "name": "Dex - Water Gun",
+            "iFrame": false
+        },
+        {
             "id": "awizard-caster",
             "url": "https://cast.awizard.dev/",
             "name": "Agg - aWizard Caster",
