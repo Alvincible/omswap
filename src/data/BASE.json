@@ -1,13 +1,13 @@
 {
   "websites": [
     "defillama",
+    "aerodrome",
     "watergun-agg",
     "awizard-caster",
     "cow-swap",
     "matcha",
     "kyberswap",
     "9mm-dex",
-    "aerodrome",
     "uniswap"
   ],
   "bridges": [

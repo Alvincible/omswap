@@ -1,10 +1,10 @@
 {
   "websites": [
-    "kyberswap",
     "defillama",
+    "aerodrome",
     "watergun-dex",
     "uniswap",
-    "aerodrome"
+    "kyberswap"
   ],
   "bridges": [],
   "tools": []
