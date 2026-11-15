@@ -2,7 +2,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useState, useMemo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ChevronDown, ExternalLink, SplitSquareHorizontal } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import chainsData from "@/data/Chains.json";
 import referencesData from "@/data/References.json";
 
@@ -155,12 +155,14 @@ const chainColorClasses: Record<string, { border: string; bg: string; hover: str
 const Index = () => {
   const isMobile = useIsMobile();
   const [leftUrl, setLeftUrl] = useState("https://dexie.space/swap");
-  const [rightUrl, setRightUrl] = useState("https://v2.tibetswap.io/");
+  const [rightUrl, setRightUrl] = useState("https://forge.awizard.dev/");
   const [selectedChain, setSelectedChain] = useState<string>("XCH");
   const [selectedColor, setSelectedColor] = useState<string>("green");
   const [availableWebsites, setAvailableWebsites] = useState<Website[]>(chainWebsites["XCH"]);
   const [availableBridges, setAvailableBridges] = useState<Website[]>(chainBridges["XCH"]);
   const [availableTools, setAvailableTools] = useState<Website[]>(chainTools["XCH"]);
+  const [leftDropdownOpen, setLeftDropdownOpen] = useState(false);
+  const [rightDropdownOpen, setRightDropdownOpen] = useState(false);
 
   // Create URL-to-Website maps for O(1) lookups
   const websiteUrlMap = useMemo(() => {
@@ -248,18 +250,17 @@ const Index = () => {
   }, [websiteUrlMap, bridgeUrlMap, toolUrlMap]);
 
   const OpenInNewTabButton = ({ url, name }: { url: string; name: string }) => (
-    <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900">
+    <div className="w-full h-full flex flex-col items-center justify-center gap-3 md:gap-4 bg-gray-900 px-4 py-4 box-border overflow-hidden">
       <div
-        className="bg-gray-400 text-white px-3 py-2 text-sm flex items-center gap-2 cursor-not-allowed select-none rounded"
+        className="bg-gray-400 text-white px-3 py-2 text-sm flex items-center gap-2 cursor-not-allowed select-none rounded max-w-full text-center"
       >
         {name} does not support iFrame
       </div>
-      <Button
-        onClick={() => window.open(url, '_blank')}
-        className={`${colors.bg} ${colors.hover} ${colors.text} px-8 py-6 text-xl flex items-center gap-3`}
-      >
-        <ExternalLink className="h-6 w-6" />
-        Open {name} in new tab
+      <Button asChild className={`${colors.bg} ${colors.hover} ${colors.text} h-auto max-w-full whitespace-normal px-4 py-3 text-base md:px-8 md:py-6 md:text-xl`}>
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          <ExternalLink className="h-5 w-5 md:h-6 md:w-6 shrink-0" />
+          Open {name} in new tab
+        </a>
       </Button>
     </div>
   );
@@ -271,7 +272,7 @@ const Index = () => {
         <div className="flex flex-row gap-1 md:gap-4 items-center justify-between">
           {/* Left Panel Controls */}
           <div className="flex-1 flex items-center gap-1 md:gap-2 min-w-0 order-1">
-            <DropdownMenu>
+            <DropdownMenu open={leftDropdownOpen} onOpenChange={setLeftDropdownOpen}>
               <DropdownMenuTrigger asChild>
                 <Button size="sm" variant="outline" className={`w-full bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between min-w-0 px-2 md:px-3`}>
                   <span className="truncate text-xs md:text-sm max-w-[60px] md:max-w-none">
@@ -286,17 +287,21 @@ const Index = () => {
                 {availableWebsites.map((website, index) => (
                   <div key={index} className="flex items-center gap-1">
                     <button
-                      onClick={() => handleUrlChange(website.url, 'left')}
+                      onClick={() => { handleUrlChange(website.url, 'left'); setLeftDropdownOpen(false); }}
                       className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
                     >
                       {website.name}
                     </button>
-                    <button
-                      onClick={() => window.open(website.url, '_blank')}
+                    <a
+                      href={website.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setLeftDropdownOpen(false)}
+                      aria-label={`Open ${website.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
@@ -304,17 +309,21 @@ const Index = () => {
                 {availableBridges.map((bridge, index) => (
                   <div key={`bridge-${index}`} className="flex items-center gap-1">
                     <button
-                      onClick={() => handleUrlChange(bridge.url, 'left')}
+                      onClick={() => { handleUrlChange(bridge.url, 'left'); setLeftDropdownOpen(false); }}
                       className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
                     >
                       {bridge.name}
                     </button>
-                    <button
-                      onClick={() => window.open(bridge.url, '_blank')}
+                    <a
+                      href={bridge.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setLeftDropdownOpen(false)}
+                      aria-label={`Open ${bridge.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
@@ -322,17 +331,21 @@ const Index = () => {
                 {availableTools.map((tool, index) => (
                   <div key={`tool-${index}`} className="flex items-center gap-1">
                     <button
-                      onClick={() => handleUrlChange(tool.url, 'left')}
+                      onClick={() => { handleUrlChange(tool.url, 'left'); setLeftDropdownOpen(false); }}
                       className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
                     >
                       {tool.name}
                     </button>
-                    <button
-                      onClick={() => window.open(tool.url, '_blank')}
+                    <a
+                      href={tool.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setLeftDropdownOpen(false)}
+                      aria-label={`Open ${tool.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
               </DropdownMenuContent>
@@ -369,7 +382,7 @@ const Index = () => {
 
           {/* Right Panel Controls */}
           <div className="flex-1 flex items-center gap-1 md:gap-2 min-w-0 order-3">
-            <DropdownMenu>
+            <DropdownMenu open={rightDropdownOpen} onOpenChange={setRightDropdownOpen}>
               <DropdownMenuTrigger asChild>
                 <Button size="sm" variant="outline" className={`w-full bg-gray-700 ${colors.border} text-white hover:bg-gray-600 justify-between min-w-0 px-2 md:px-3`}>
                   <span className="truncate text-xs md:text-sm max-w-[60px] md:max-w-none">
@@ -384,17 +397,21 @@ const Index = () => {
                 {availableWebsites.map((website, index) => (
                   <div key={index} className="flex items-center gap-1">
                     <button
-                      onClick={() => handleUrlChange(website.url, 'right')}
+                      onClick={() => { handleUrlChange(website.url, 'right'); setRightDropdownOpen(false); }}
                       className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
                     >
                       {website.name}
                     </button>
-                    <button
-                      onClick={() => window.open(website.url, '_blank')}
+                    <a
+                      href={website.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setRightDropdownOpen(false)}
+                      aria-label={`Open ${website.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
@@ -402,17 +419,21 @@ const Index = () => {
                 {availableBridges.map((bridge, index) => (
                   <div key={`bridge-${index}`} className="flex items-center gap-1">
                     <button
-                      onClick={() => handleUrlChange(bridge.url, 'right')}
+                      onClick={() => { handleUrlChange(bridge.url, 'right'); setRightDropdownOpen(false); }}
                       className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
                     >
                       {bridge.name}
                     </button>
-                    <button
-                      onClick={() => window.open(bridge.url, '_blank')}
+                    <a
+                      href={bridge.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setRightDropdownOpen(false)}
+                      aria-label={`Open ${bridge.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
                 <div className="my-1 border-t border-gray-600" />
@@ -420,17 +441,21 @@ const Index = () => {
                 {availableTools.map((tool, index) => (
                   <div key={`tool-${index}`} className="flex items-center gap-1">
                     <button
-                      onClick={() => handleUrlChange(tool.url, 'right')}
+                      onClick={() => { handleUrlChange(tool.url, 'right'); setRightDropdownOpen(false); }}
                       className="flex-1 text-left text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded text-sm truncate"
                     >
                       {tool.name}
                     </button>
-                    <button
-                      onClick={() => window.open(tool.url, '_blank')}
+                    <a
+                      href={tool.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setRightDropdownOpen(false)}
+                      aria-label={`Open ${tool.name} in new tab`}
                       className="text-white hover:bg-gray-700 cursor-pointer px-2 py-1.5 rounded flex items-center gap-1 text-sm flex-shrink-0"
                     >
                       <ExternalLink className="h-4 w-4" />
-                    </button>
+                    </a>
                   </div>
                 ))}
               </DropdownMenuContent>
